@@ -1,6 +1,3 @@
-using System;
-
-using MonoDevelop.Core;
 using MonoDevelop.Core.Execution;
 
 namespace LuaBinding

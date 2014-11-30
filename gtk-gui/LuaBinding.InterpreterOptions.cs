@@ -5,13 +5,21 @@ namespace LuaBinding
 	public partial class InterpreterOptions
 	{
 		private global::Gtk.Table MainTabel;
+		
 		private global::Gtk.Entry Interpreter51;
+		
 		private global::Gtk.Entry Interpreter52;
+		
 		private global::Gtk.Entry InterpreterDefault;
+		
 		private global::Gtk.Entry InterpreterJIT;
+		
 		private global::Gtk.Label label4;
+		
 		private global::Gtk.Label label5;
+		
 		private global::Gtk.Label label6;
+		
 		private global::Gtk.Label label7;
 
 		protected virtual void Build ()

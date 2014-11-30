@@ -25,8 +25,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.IO;
-using System.Xml;
 
 using MonoDevelop.Projects;
 using MonoDevelop.Core;
@@ -40,26 +38,28 @@ namespace LuaBinding
 				return "Lua";
 			}
 		}
-		
+
 		public string ProjectStockIcon {
 			get { 
 				return "md-project";
 			}
 		}
-		
-		public bool IsSourceCodeFile (FilePath file_name)
+
+		public bool IsSourceCodeFile(FilePath file_name)
 		{
-			return file_name.ToString().ToLower().EndsWith( ".lua" );
+			return file_name.ToString().ToLower().EndsWith(".lua", StringComparison.Ordinal);
 			//return string.Compare (Path.GetExtension (file_name), ".lua", true) == 0;
 		}
 
 		public string SingleLineCommentTag { get { return "--"; } }
+
 		public string BlockCommentStartTag { get { return "--[["; } }
+
 		public string BlockCommentEndTag { get { return "]]"; } }
-			
-		public FilePath GetFileName (FilePath base_name)
+
+		public FilePath GetFileName(FilePath baseName)
 		{
-			return base_name + ".lua";
+			return baseName + ".lua";
 		}
 
 	}

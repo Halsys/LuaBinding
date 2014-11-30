@@ -5,10 +5,8 @@ using System.IO;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-using MonoDevelop.Ide.Gui;
 using MonoDevelop.Ide.Gui.Content;
 using MonoDevelop.Ide.CodeCompletion;
-using MonoDevelop.Core;
 
 using ICSharpCode.NRefactory.Completion;
 
@@ -53,7 +51,7 @@ namespace LuaBinding
 		{
 			int depth = 0;
 			string required = "";
-			List<Tuple<int, List<string>>> optional = new List<Tuple<int, List<string>>>();
+			var optional = new List<Tuple<int, List<string>>>();
 
 			int i = 0;
 			while( i < input.Length )
@@ -86,7 +84,7 @@ namespace LuaBinding
 				i++;
 			}
 
-			List<string> ret = new List<string>();
+			var ret = new List<string>();
 
 			if( optional.Count == 0 )
 			{
@@ -94,8 +92,8 @@ namespace LuaBinding
 				return ret;
 			}
 
-			int[] argument = new int[optional.Count];
-			int[] argument_max = new int[optional.Count];
+			var argument = new int[optional.Count];
+			var argument_max = new int[optional.Count];
 
 			for( i = 0; i < argument.Length; i++ ) // Reset this one
 				argument[ i ] = 0;
@@ -118,7 +116,7 @@ namespace LuaBinding
 
 				// The generated sequence is in itt now, but we need to clean it up a bit...
 				itt = itt.Trim( " \t,".ToCharArray() );
-				List<string> split = new List<string>( itt.Split( ",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries ) );
+				var split = new List<string>( itt.Split( ",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries ) );
 
 				for( i = split.Count; i-- > 0; )
 					if( string.IsNullOrWhiteSpace( split[ i ] ) )
@@ -181,24 +179,24 @@ namespace LuaBinding
 			return Overloads[ overload ].Split( ",".ToCharArray() ).Length;
 		}
 
-		public override string GetParameterName( int overload, int currentParameter )
+		public override string GetParameterName( int overload, int paramIndex )
 		{
-			return Overloads[ overload ].Split( ",".ToCharArray() )[ currentParameter ].Trim();
+			return Overloads[ overload ].Split( ",".ToCharArray() )[ paramIndex ].Trim();
 		}
 
-		string GetHeading( int overload, string[] parameterDescription, int currentParameter )
+		static string GetHeading( int overload, string[] parameterDescription, int currentParameter )
 		{
 			return "HEADING";
 		}
 
-		string GetDescription( int overload, int currentParameter )
+		static string GetDescription( int overload, int currentParameter )
 		{
 			return "DESCRIPT";
 		}
 
 		public override TooltipInformation CreateTooltipInformation(int overload, int currentParameter, bool smartWrap)
 		{
-			TooltipInformation info = new TooltipInformation();
+			var info = new TooltipInformation();
 
 			string[] args = Overloads[ overload ].Split( ",".ToCharArray() );
 			string markup = "";
@@ -206,10 +204,7 @@ namespace LuaBinding
 			int current = 1;
 			foreach( string arg in args )
 			{
-				if( current == currentParameter )
-					markup += string.Format("{0}<b><i>{1}</i></b>", comma, arg);
-				else
-					markup += string.Format("{0}{1}", comma, arg);;
+				markup += current == currentParameter ? string.Format("{0}<b><i>{1}</i></b>", comma, arg) : string.Format("{0}{1}", comma, arg);
 
 				comma = ", ";
 				current++;
@@ -395,14 +390,14 @@ namespace LuaBinding
 		};
 
 		string[] ProjectGlobals = new string[0];
-		DateTime? LastModified = null;
+		DateTime? LastModified;
 
 		void UpdateProjectGlobals()
 		{
-			if( !this.document.HasProject )
+			if( !document.HasProject )
 				return;
 
-			var proj = this.document.Project;
+			var proj = document.Project;
 			string path = proj.GetAbsoluteChildPath( ".project_globals" );
 
 			if( !File.Exists( path ) )
@@ -424,8 +419,8 @@ namespace LuaBinding
 		readonly Regex rx_is_number    = new Regex( @"(?<![A-z_][0-9\.]*)[0-9\.]+$", RegexOptions.Compiled );
 		public override bool CanRunCompletionCommand()
 		{
-			string line = this.Editor.GetLineText( this.Editor.Caret.Line );
-			string to_left = line.Substring( 0, Math.Min( this.Editor.Caret.Column - 1, line.Length ) );
+			string line = Editor.GetLineText( Editor.Caret.Line );
+			string to_left = line.Substring( 0, Math.Min( Editor.Caret.Column - 1, line.Length ) );
 
 			{ // Are we in a definition?
 				if( rx_is_local.IsMatch( to_left ) || rx_is_function.IsMatch( to_left ) )
@@ -450,12 +445,12 @@ namespace LuaBinding
 
 			/*
 			{ // keyword?
-				int pos = this.Editor.Caret.Offset;
+				int pos = Editor.Caret.Offset;
 				string word = "";
 
 				while( pos > 1 )
 				{
-					char x = this.Editor.GetCharAt( pos );
+					char x = Editor.GetCharAt( pos );
 					if( !ValidVarnameChar( x ) )
 						break;
 					word = x + word;
@@ -506,8 +501,7 @@ namespace LuaBinding
 					if( letter == '.' || letter == ':' || letter == ',' || 
 						!ValidVarnameChar(letter) )
 					{
-						if( letter == '.' || letter == ':' )
-							has_namespace = true;
+						has_namespace |= letter == '.' || letter == ':';
 						break;
 
 					}
@@ -557,14 +551,14 @@ namespace LuaBinding
 			else
 			{
 				fullcontext = fullcontext.TrimEnd( ".".ToCharArray() );
-				if( fullcontext.StartsWith( "_G." ) )
-					fullcontext = fullcontext.Substring( "_G.".Length );
+				if (fullcontext.StartsWith("_G.", StringComparison.Ordinal))
+					fullcontext = fullcontext.Substring("_G.".Length);
 			}
 
 			CompletionCategory cat = null;
 			Action<string> handle_line = delegate(string line)
 			{
-				if(line.Trim().StartsWith("#"))
+				if (line.Trim().StartsWith("#", StringComparison.Ordinal))
 					return;
 				if(string.IsNullOrWhiteSpace(line))
 					return;
@@ -580,22 +574,19 @@ namespace LuaBinding
 					string icon = MonoDevelop.Ide.Gui.Stock.Method;
 					string arg = arg2;
 
-					if( arg == "" ) // keyword
-					{
-						icon = "md-keyword";
-						arg = "";
-					}
-					else
-					if( arg == "{}" )
-					{
-						icon = MonoDevelop.Ide.Gui.Stock.NameSpace;
-						arg = "";
-					}
-					else
-					if( arg == "#" )
-					{
-						icon = MonoDevelop.Ide.Gui.Stock.Literal;
-						arg = "";
+					switch (arg) {
+						case "":
+							icon = "md-keyword";
+							arg = "";
+							break;
+						case "{}":
+							icon = MonoDevelop.Ide.Gui.Stock.NameSpace;
+							arg = "";
+							break;
+						case "#":
+							icon = MonoDevelop.Ide.Gui.Stock.Literal;
+							arg = "";
+							break;
 					}
 
 					var elm = ret.Add( arg1 + arg, icon, "", arg1 );
@@ -603,7 +594,7 @@ namespace LuaBinding
 				}
 			};
 
-			this.UpdateProjectGlobals();
+			UpdateProjectGlobals();
 
 			cat = new GlobalCompletionCategory();
 
@@ -641,13 +632,13 @@ namespace LuaBinding
 			return ret;
 		}
 
-		private ParameterDataProvider _HandleParameterCompletion(CodeCompletionContext completionContext, char completionChar)
+		ParameterDataProvider _HandleParameterCompletion(CodeCompletionContext completionContext, char completionChar)
 		{
 
 			// attempt to get the function
 			int row = completionContext.TriggerLine;
 			int col = completionContext.TriggerLineOffset;
-			string line = this.Document.Editor.GetLineText( row );
+			string line = Document.Editor.GetLineText( row );
 			line = line.Substring(0, Math.Min(col, line.Length));
 
 			// Keep reading backwards until the last unclosed function
@@ -666,8 +657,6 @@ namespace LuaBinding
 				case '(':
 					depth--;
 					_break_loop = depth < 0;
-					break;
-				default:
 					break;
 				}
 
@@ -715,7 +704,7 @@ namespace LuaBinding
 
 			Action<string> handle_line = delegate(string line2)
 			{
-				if(line2.Trim().StartsWith("#"))
+				if (line2.Trim().StartsWith("#", StringComparison.Ordinal))
 					return;
 				if(string.IsNullOrWhiteSpace(line2))
 					return;
@@ -730,7 +719,7 @@ namespace LuaBinding
 					args = arg2;
 			};
 
-			this.UpdateProjectGlobals();
+			UpdateProjectGlobals();
 			foreach( string glob in Globals )
 				handle_line(glob);
 			foreach( string glob in ProjectGlobals )
@@ -765,17 +754,17 @@ namespace LuaBinding
 			var ret = new List<string>();
 
 			// First, get the real globals
-			//this.document.FileName
+			//document.FileName
 
 			// Then get the locals from our char pos, along with the indentation (use tabs, please :C)
 			// This is a hacky method that gets the indentation depth 
-			string text = this.Editor.GetTextBetween( 0, this.Editor.Caret.Offset );
+			string text = Editor.GetTextBetween( 0, Editor.Caret.Offset );
 
 			// Get locals
 			{
 				MatchCollection collection = rx_locals.Matches( text );
 
-				Match[] col = new Match[collection.Count];
+				var col = new Match[collection.Count];
 				int i = 1;
 				foreach( Match match in collection )
 				{
@@ -819,7 +808,7 @@ namespace LuaBinding
 			{
 				MatchCollection collection = rx_args_and_for.Matches( text );
 
-				Match[] col = new Match[collection.Count];
+				var col = new Match[collection.Count];
 				int i = 1;
 				foreach( Match match in collection )
 				{
@@ -862,11 +851,11 @@ namespace LuaBinding
 		public override bool KeyPress(Gdk.Key key, char keyChar, Gdk.ModifierType modifier)
 		{
 			// If we are a keyword
-			if( keyChar == ' ' && modifier == Gdk.ModifierType.None && this.CompletionWidget != null )
+			if( keyChar == ' ' && modifier == Gdk.ModifierType.None && CompletionWidget != null )
 			{
 				CompletionWindowManager.PreProcessKeyEvent( Gdk.Key.Tab, '\t', Gdk.ModifierType.None );
 				CompletionWindowManager.PostProcessKeyEvent( Gdk.Key.Tab, '\t', Gdk.ModifierType.None );
-				this.CompletionWidget.CurrentCodeCompletionContext.TriggerWordLength = 0;
+				CompletionWidget.CurrentCodeCompletionContext.TriggerWordLength = 0;
 			}
 
 			bool ret = base.KeyPress(key, keyChar, modifier);
@@ -890,7 +879,7 @@ namespace LuaBinding
 
 			while( pos > 1 )
 			{
-				char x = this.document.Editor.GetCharAt( pos );
+				char x = document.Editor.GetCharAt( pos );
 
 				switch( x )
 				{
@@ -905,8 +894,6 @@ namespace LuaBinding
 				case ',':
 					if(depth == 0)
 						commas++;
-					break;
-				default:
 					break;
 				}
 

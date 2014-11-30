@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Xml;
-using System.Diagnostics;
 
 using MonoDevelop.Core;
 using MonoDevelop.Core.Execution;
@@ -20,94 +19,117 @@ namespace LuaBinding
 		{
 		}
 
-		public LuaProject( string language_name, ProjectCreateInformation info, XmlElement project_options )
+		public LuaProject(string languageName, ProjectCreateInformation info, XmlElement projectOptions)
 		{
-			if( !String.Equals( language_name, ProjectTypeName ) )
-				throw new ArgumentException( "Not a Lua project: " + language_name );
+			//TODO projectOptions does nothing!
+			if (!String.Equals(languageName, ProjectTypeName))
+				throw new ArgumentException("Not a Lua project: " + languageName);
 
-			if( info != null )
-			{
+			if (info != null) {
 				Name = info.ProjectName;
 			}
 
 			CreateDefaultConfigurations();
 		}
 
-		public override string ProjectType {
-			get { return ProjectTypeName; }
+		public override System.Collections.Generic.IEnumerable<string> GetProjectTypes()
+		{
+			return new [] {
+				ProjectTypeName
+			};
 		}
 
-		public static LuaProject FromSingleFile( string language_name, string file_name )
+		public static LuaProject FromSingleFile(string languageName, string fileName)
 		{
-			var projectInfo = new ProjectCreateInformation() {
-				ProjectName = Path.GetFileNameWithoutExtension( file_name ),
-				SolutionPath = Path.GetDirectoryName( file_name ),
-				ProjectBasePath = Path.GetDirectoryName( file_name )
+			var projectInfo = new ProjectCreateInformation {
+				ProjectName = Path.GetFileNameWithoutExtension(fileName),
+				SolutionPath = Path.GetDirectoryName(fileName),
+				ProjectBasePath = Path.GetDirectoryName(fileName)
 			};
 
-			var project = new LuaProject( language_name, projectInfo, null );
-			project.AddFile( new ProjectFile( file_name ) );
+			var project = new LuaProject(languageName, projectInfo, null);
+			project.AddFile(new ProjectFile(fileName));
 			return project;
 		}
 
-		public override SolutionItemConfiguration CreateConfiguration( string name )
+		public override SolutionItemConfiguration CreateConfiguration(string name)
 		{
-			return new LuaConfiguration( name );
-		}
-		
-		public override bool IsCompileable(string file_name)
-		{
-			return file_name.ToLower().EndsWith( ".lua" );
+			return new LuaConfiguration(name);
 		}
 
-		protected override bool OnGetCanExecute( ExecutionContext context, ConfigurationSelector configuration )
+		public override bool IsCompileable(string fileName)
+		{
+			return fileName.ToLower().EndsWith(".lua", StringComparison.Ordinal);
+		}
+
+		protected override bool OnGetCanExecute(ExecutionContext context, ConfigurationSelector configuration)
 		{
 			// TODO: Check interpreter paths from here...
-			LuaConfiguration config = this.DefaultConfiguration as LuaConfiguration;
-			return !string.IsNullOrWhiteSpace( config.MainFile );
+			var config = DefaultConfiguration as LuaConfiguration;
+			return !string.IsNullOrWhiteSpace(config.MainFile);
 		}
+
+		protected override bool CheckNeedsBuild(ConfigurationSelector configuration)
+		{
+			var config = DefaultConfiguration as LuaConfiguration;
+			if (config != null && !string.IsNullOrEmpty(config.Launcher) &&
+			    config.LangVersion == LangVersion.Moai &&
+			    config.LangVersion == LangVersion.Love) {
+				return false;
+			}
+			return base.CheckNeedsBuild(configuration);
+		}
+
 
 		protected override BuildResult DoBuild(IProgressMonitor monitor, ConfigurationSelector configuration)
 		{
-			LuaConfiguration config = this.DefaultConfiguration as LuaConfiguration;
+			var config = DefaultConfiguration as LuaConfiguration;
 
-			if( config != null && config.LangVersion == LangVersion.GarrysMod )
-			{
-				monitor.ReportWarning( "Can't build a with Garry's Mod Lua syntax!" );
-				return new BuildResult( "Can't build a with Garry's Mod Lua syntax!", 0, 0 );
+			if (config != null && !string.IsNullOrEmpty(config.Launcher) && config.LangVersion == LangVersion.Moai) {
+				monitor.ReportWarning("Can't build a with Moai syntax!");
+				return new BuildResult("Can't build a with Moai syntax!", 0, 0);
 			}
 
-			return LuaCompilerManager.Compile(this.Items, config, configuration, monitor);
+			if (config != null && !string.IsNullOrEmpty(config.Launcher) && config.LangVersion == LangVersion.Love) {
+				monitor.ReportWarning("Can't build a with Love syntax!");
+				return new BuildResult("Can't build a with Love syntax!", 0, 0);
+			}
+
+			if (config != null && config.LangVersion == LangVersion.GarrysMod) {
+				monitor.ReportWarning("Can't build a with Garry's Mod Lua syntax!");
+				return new BuildResult("Can't build a with Garry's Mod Lua syntax!", 0, 0);
+			}
+
+			return LuaCompilerManager.Compile(Items, config, configuration, monitor);
 		}
 
-		protected override void DoExecute( IProgressMonitor monitor, ExecutionContext context, ConfigurationSelector configuration )
+		protected override void DoExecute(IProgressMonitor monitor, ExecutionContext context, ConfigurationSelector configuration)
 		{
-			if( !CheckCanExecute( configuration ) )
+			if (!CheckCanExecute(configuration))
 				return;
 
-			var config = (LuaConfiguration)GetConfiguration( configuration );
+			var config = (LuaConfiguration)GetConfiguration(configuration);
 			IConsole console = config.ExternalConsole ?
-				context.ExternalConsoleFactory.CreateConsole( !config.PauseConsoleOutput ) :
-				context.ConsoleFactory.CreateConsole( !config.PauseConsoleOutput );
+				context.ExternalConsoleFactory.CreateConsole(!config.PauseConsoleOutput) :
+				context.ConsoleFactory.CreateConsole(!config.PauseConsoleOutput);
 
-			var aggregatedMonitor = new AggregatedOperationMonitor( monitor );
+			var aggregatedMonitor = new AggregatedOperationMonitor(monitor);
 
-			try
-			{
+			try {
 				string param = string.Format("\"{0}\" {1}", config.MainFile, config.CommandLineParameters);
 
 				IProcessAsyncOperation op = 
-				    Runtime.ProcessService.StartConsoleProcess(GetLuaPath( config.LangVersion ),
-				                                               param, BaseDirectory,
-					                                           config.EnvironmentVariables, console, null);
+					Runtime.ProcessService.StartConsoleProcess(GetLuaPath(config),
+						param, BaseDirectory,
+						config.EnvironmentVariables, console, null);
 
 				monitor.CancelRequested += delegate {
 					op.Cancel();
 				};
 
-				aggregatedMonitor.AddOperation( op );
+				aggregatedMonitor.AddOperation(op);
 				op.WaitForCompleted();
-				monitor.Log.WriteLine( "The application exited with code: " + op.ExitCode );
+				monitor.Log.WriteLine("The application exited with code: " + op.ExitCode);
 				/*
 				var executionCommand = //CreateExecutionCommand( configuration, config );
 					new NativeExecutionCommand( GetLuaPath( config.LangVersion ), 
@@ -128,19 +150,15 @@ namespace LuaBinding
 
 				monitor.Log.WriteLine( "The application exited with code: " + asyncOp.ExitCode );
 				*/
-			}
-			catch( Exception exc )
-			{
-				monitor.ReportError( GettextCatalog.GetString( "Cannot execute \"{0}\"", config.MainFile ), exc );
-			}
-			finally
-			{
+			} catch (Exception exc) {
+				monitor.ReportError(GettextCatalog.GetString("Cannot execute \"{0}\"", config.MainFile), exc);
+			} finally {
 				console.Dispose();
 				aggregatedMonitor.Dispose();
 			}
 		}
 
-		bool CheckCanExecute( ConfigurationSelector configuration )
+		bool CheckCanExecute(ConfigurationSelector configuration)
 		{
 			/*
 			if( !IronManager.IsInterpreterPathValid() )
@@ -150,55 +168,55 @@ namespace LuaBinding
 			}
 			*/
 
-			var config = (LuaConfiguration)GetConfiguration( configuration );
+			var config = (LuaConfiguration)GetConfiguration(configuration);
 
 			{ // check that the interpreter is set
-				FilePath LuaPath = GetLuaPath( config.LangVersion );
+				FilePath LuaPath = GetLuaPath(config);
+				Console.WriteLine(LuaPath.FullPath);
 
-				if( string.IsNullOrWhiteSpace( LuaPath ) )
+				if (string.IsNullOrWhiteSpace(LuaPath))
 					return false;
 			}
 
-			if( String.IsNullOrEmpty( config.MainFile ) )
-			{
-				MessageService.ShowError( "Main file not set", "Main file has not been set." );
+			if (String.IsNullOrEmpty(config.MainFile)) {
+				MessageService.ShowError("Main file not set", "Main file has not been set.");
 				return false;
 			}
 
-			if( !File.Exists(BaseDirectory + "/" + config.MainFile) )
-			{
-				MessageService.ShowError( "Main file is missing", string.Format("The file `{0}` does not exist!", config.MainFile) );
+			if (!File.Exists(BaseDirectory + "/" + config.MainFile)) {
+				MessageService.ShowError("Main file is missing", string.Format("The file `{0}` does not exist!", config.MainFile));
 				return false;
 			}
 
 			return true;
 		}
 
-		static FilePath GetLuaPath(LangVersion ver)
+		static FilePath GetLuaPath(LuaConfiguration conf)
 		{
-			switch( ver )
-			{
-			case LangVersion.Lua:
-				return (FilePath)PropertyService.Get<string>( "Lua.DefaultInterpreterPath" );
-			case LangVersion.Lua51:
-				return (FilePath)PropertyService.Get<string>( "Lua.51InterpreterPath" );
-			case LangVersion.Lua52:
-				return (FilePath)PropertyService.Get<string>( "Lua.52InterpreterPath" );
-			case LangVersion.LuaJIT:
-				return (FilePath)PropertyService.Get<string>( "Lua.JITInterpreterPath" );
+			switch (conf.LangVersion) {
+				case LangVersion.Lua:
+					return (FilePath)PropertyService.Get<string>("Lua.DefaultInterpreterPath");
+				case LangVersion.Lua51:
+					return (FilePath)PropertyService.Get<string>("Lua.51InterpreterPath");
+				case LangVersion.Lua52:
+					return (FilePath)PropertyService.Get<string>("Lua.52InterpreterPath");
+				case LangVersion.LuaJIT:
+					return (FilePath)PropertyService.Get<string>("Lua.JITInterpreterPath");
+				case LangVersion.Moai:
+				case LangVersion.Love:
+					return new FilePath(conf.Launcher);
 			}
 
 			return null;
 		}
 
-		protected virtual LuaExecutionCommand CreateExecutionCommand( ConfigurationSelector config_sel, LuaConfiguration configuration )
+		protected virtual LuaExecutionCommand CreateExecutionCommand(ConfigurationSelector configSel, LuaConfiguration configuration)
 		{
-			LangVersion vers = configuration.LangVersion;
-			FilePath LuaPath = GetLuaPath( vers );
+			FilePath LuaPath = GetLuaPath(configuration);
 
 			string arguments = "\"" + configuration.MainFile + "\" " + configuration.CommandLineParameters;
 			
-			var command = new LuaExecutionCommand( LuaPath ) {
+			var command = new LuaExecutionCommand(LuaPath) {
 				Arguments = arguments,
 				WorkingDirectory = BaseDirectory,
 				EnvironmentVariables = configuration.GetParsedEnvironmentVariables(),
@@ -210,8 +228,8 @@ namespace LuaBinding
 
 		void CreateDefaultConfigurations()
 		{
-			var releaseconfig = CreateConfiguration( "Release" ) as LuaConfiguration;
-			Configurations.Add( releaseconfig );
+			var releaseconfig = CreateConfiguration("Release") as LuaConfiguration;
+			Configurations.Add(releaseconfig);
 		}
 	}
 }

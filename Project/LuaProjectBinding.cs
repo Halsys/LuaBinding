@@ -1,5 +1,4 @@
 
-using System;
 using System.IO;
 using System.Xml;
 
@@ -13,19 +12,19 @@ namespace LuaBinding
 			get { return "Lua"; }
 		}
 
-		public Project CreateProject (ProjectCreateInformation info, XmlElement project_options)
+		public Project CreateProject (ProjectCreateInformation info, XmlElement projectOptions)
 		{
-			return new LuaProject(Name, info, project_options);
+			return new LuaProject(Name, info, projectOptions);
 		}
 
-		public Project CreateSingleFileProject (string source_file)
+		public Project CreateSingleFileProject (string sourceFile)
 		{
-			return LuaProject.FromSingleFile(Name, source_file);
+			return LuaProject.FromSingleFile(Name, sourceFile);
 		}
 
-		public bool CanCreateSingleFileProject (string source_file)
+		public bool CanCreateSingleFileProject (string sourceFile)
 		{
-			return Path.GetExtension(source_file) == "lua";
+			return Path.GetExtension(sourceFile) == "lua";
 		}
 	}
 }

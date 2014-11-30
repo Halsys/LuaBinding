@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace LuaBinding
@@ -8,7 +7,7 @@ namespace LuaBinding
 		public static string[] GetLocals(string lua, int position)
 		{
 			// hacky, just parse backwards, through strings, and stuff, check for inside strings in here, in future
-			List<string> ret = new List<string>();
+			var ret = new List<string>();
 
 
 

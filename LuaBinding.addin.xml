@@ -1,11 +1,11 @@
 <Addin 	id			= "LuaBinding"
 		namespace	= "LuaBinding"
 		name		= "Lua Language Binding"
-		author		= "Kate Adams"
-		url			= "https://github.com/c0bra61/LuaBinding"
-		description	= "Lua Language Binding"
+		author		= "Cory Golden"
+		url			= "https://github.com/Halsys/LuaBinding"
+		description	= "Lua Language Binding - Original Author: Kate Adams"
 		category	= "Language bindings"
-		version		= "1.0.14">
+		version		= "1.1.5">
 	
 	<Runtime>
 		<Import assembly = "LuaBinding.dll" />
@@ -13,8 +13,8 @@
 	</Runtime>
 	
 	<Dependencies>
-		<Addin id = "::MonoDevelop.Ide" version = "4.0" />
-		<Addin id = "::MonoDevelop.Core" version = "4.0" />
+		<Addin id = "::MonoDevelop.Ide" version = "5.5.4" />
+		<Addin id = "::MonoDevelop.Core" version = "5.5.4" />
 		<Addin id = "::MonoDevelop.SourceEditor2" version = "4.0" />
 		<Addin id = "::MonoDevelop.Refactoring" version="4.0"/>
 		<!-- <Addin id = "::Mono.TextEditor" version = "1.0" /> -->

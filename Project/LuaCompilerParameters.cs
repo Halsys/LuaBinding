@@ -30,17 +30,6 @@ namespace LuaBinding
 {
 	class LuaCompilerParameters : MonoDevelop.Projects.ConfigurationParameters
 	{
-		public override void AddDefineSymbol (string symbol)
-		{
-			// Lua has no symbols to define
-		}
-		public override bool HasDefineSymbol (string symbol)
-		{
-			return false;
-		}
-		public override void RemoveDefineSymbol (string symbol)
-		{
-			// Lua has no symbols to define
-		}
+
 	}
 }

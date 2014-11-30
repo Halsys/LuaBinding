@@ -1,5 +1,4 @@
 using System;
-using MonoDevelop.Core;
 using MonoDevelop.Core.Serialization;
 using MonoDevelop.Projects;
 
@@ -11,23 +10,27 @@ namespace LuaBinding
 		Lua51,
 		Lua52,
 		LuaJIT,
-		GarrysMod
+		GarrysMod,
+		Moai,
+		Love
 	}
 
 	public class LuaConfiguration : ProjectConfiguration
 	{
-		[ItemProperty( "MainFile", DefaultValue = "main.lua" )]
+		[ItemProperty("MainFile", DefaultValue = "main.lua")]
 		string _MainFile = "main.lua";
-		[ItemProperty( "InterpreterArgs" )]
+		[ItemProperty("InterpreterArgs")]
 		string _InterpreterArgs = String.Empty;
-		[ItemProperty( "LangVersion", DefaultValue = LangVersion.Lua )]
+		[ItemProperty("LangVersion", DefaultValue = LangVersion.Lua)]
 		LangVersion _LangVersion = LangVersion.Lua;
+		[ItemProperty("Launcher", DefaultValue = "")]
+		string _Launcher = "";
 
 		public LuaConfiguration()
 		{
 		}
 
-		public LuaConfiguration( string name )
+		public LuaConfiguration(string name)
 		{
 			Name = name;
 		}
@@ -47,17 +50,28 @@ namespace LuaBinding
 			set { _LangVersion = value; }
 		}
 
-		public override void CopyFrom( ItemConfiguration config )
-		{
-			var LuaConfig = config as LuaConfiguration;
-			if( LuaConfig == null )
-				throw new ArgumentException( "Not a Lua configuration", "config" );
+		public string Launcher {
+			get {
+				return _Launcher;
+			}
+			set {
+				_Launcher = value;
+			}
+		}
 
-			base.CopyFrom( config );
+
+		public override void CopyFrom(ItemConfiguration conf)
+		{
+			var LuaConfig = conf as LuaConfiguration;
+			if (LuaConfig == null)
+				throw new ArgumentException("Not a Lua configuration", "conf");
+
+			base.CopyFrom(conf);
 
 			_MainFile = LuaConfig._MainFile;
 			_InterpreterArgs = LuaConfig._InterpreterArgs;
 			_LangVersion = LuaConfig._LangVersion;
+			_Launcher = LuaConfig._Launcher;
 		}
 	}
 }

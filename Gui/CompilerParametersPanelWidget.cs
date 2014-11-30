@@ -25,27 +25,29 @@
 // THE SOFTWARE.
 
 using System;
-using MonoDevelop.Core;
 using MonoDevelop.Projects;
 using Gtk;
 
 namespace LuaBinding
 {
-	[System.ComponentModel.ToolboxItem( true )]
-	partial class CompilerParametersPanelWidget : Gtk.Bin
+	[System.ComponentModel.ToolboxItem(true)]
+	partial class CompilerParametersPanelWidget : Bin
 	{
+
 		ListStore _VersionsStore;
 
 		public CompilerParametersPanelWidget()
 		{
-			this.Build();
+			Build();
 
-			_VersionsStore = new ListStore( typeof(string), typeof(LangVersion) );
-			_VersionsStore.AppendValues( "Default", LangVersion.Lua );
-			_VersionsStore.AppendValues( "Lua 5.1", LangVersion.Lua51 );
-			_VersionsStore.AppendValues( "Lua 5.2", LangVersion.Lua52 );
-			_VersionsStore.AppendValues( "LuaJIT", LangVersion.LuaJIT );
-			_VersionsStore.AppendValues( "Garry's Mod", LangVersion.GarrysMod );
+			_VersionsStore = new ListStore(typeof(string), typeof(LangVersion));
+			_VersionsStore.AppendValues("Default", LangVersion.Lua);
+			_VersionsStore.AppendValues("Lua 5.1", LangVersion.Lua51);
+			_VersionsStore.AppendValues("Lua 5.2", LangVersion.Lua52);
+			_VersionsStore.AppendValues("LuaJIT", LangVersion.LuaJIT);
+			_VersionsStore.AppendValues("Garry's Mod", LangVersion.GarrysMod);
+			_VersionsStore.AppendValues("Moai", LangVersion.Moai);
+			_VersionsStore.AppendValues("LÖVE", LangVersion.Love);
 			LanguageVersion.Model = _VersionsStore;
 
 			Visible = true;
@@ -57,64 +59,40 @@ namespace LuaBinding
 		}
 
 		public LangVersion LangVersion {
-			get
-			{
-				switch( LanguageVersion.Active )
-				{
-				case 0:
-					return LangVersion.Lua;
-				case 1:
-					return LangVersion.Lua51;
-				case 2:
-					return LangVersion.Lua52;
-				case 3:
-					return LangVersion.LuaJIT;
-				case 4:
-					return LangVersion.GarrysMod;
-				}
-
-				return LangVersion.Lua; // fallback
+			get {
+				return (LangVersion)LanguageVersion.Active;
 			}
-			set
-			{
-				switch( value )
-				{
-				case LangVersion.Lua:
-					LanguageVersion.Active = 0;
-					break;
-				case LangVersion.Lua51:
-					LanguageVersion.Active = 1;
-					break;
-				case LangVersion.Lua52:
-					LanguageVersion.Active = 2;
-					break;
-				case LangVersion.LuaJIT:
-					LanguageVersion.Active = 3;
-					break;
-				case LangVersion.GarrysMod:
-					LanguageVersion.Active = 4;
-					break;
-				}
+			set {
+				LanguageVersion.Active = (int)value;
 			}
 		}
 
-		DotNetProject project;
-		DotNetProjectConfiguration configuration;
+		public string Launcher {
+			get {
+				return new Uri(filechooserbutton3.Uri).LocalPath;
+			}set {
+				filechooserbutton3.SetUri(new Uri(value).AbsoluteUri);
+			}
 
-		public void Load( DotNetProject project, DotNetProjectConfiguration configuration )
+		}
+
+		DotNetProject pproject;
+		DotNetProjectConfiguration pconfiguration;
+
+		public void Load(DotNetProject project, DotNetProjectConfiguration configuration)
 		{
-			this.project = project;
-			this.configuration = configuration;
+			pproject = project;
+			pconfiguration = configuration;
 		}
 
 		public void Store()
 		{
-			project.CompileTarget = CompileTarget.Exe;
-			configuration.DebugMode = false;
+			pproject.CompileTarget = CompileTarget.Exe;
+			pconfiguration.DebugMode = false;
 		}
 	}
 
-	class CompilerParametersPanel : MonoDevelop.Ide.Gui.Dialogs.MultiConfigItemOptionsPanel
+	sealed class CompilerParametersPanel : MonoDevelop.Ide.Gui.Dialogs.MultiConfigItemOptionsPanel
 	{
 		CompilerParametersPanelWidget widget;
 
@@ -129,6 +107,7 @@ namespace LuaBinding
 
 			widget.DefaultFile = config.MainFile;
 			widget.LangVersion = config.LangVersion;
+			widget.Launcher = config.Launcher;
 		}
 
 		public override void ApplyChanges()
@@ -137,6 +116,7 @@ namespace LuaBinding
 
 			config.MainFile = widget.DefaultFile;
 			config.LangVersion = widget.LangVersion;
+			config.Launcher = widget.Launcher;
 		}
 	}
 }

@@ -3,12 +3,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{961B9266-C44A-42B6-BA3D-3FB229C9C417}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>LuaBinding</AssemblyName>
     <RootNamespace>LuaBinding</RootNamespace>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -42,43 +43,33 @@
     <Reference Include="System.Xml" />
     <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
-      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
-      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
-      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
-      <Package>gtk-sharp-2.0</Package>
     </Reference>
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
-      <Package>glib-sharp-2.0</Package>
     </Reference>
-    <Reference Include="MonoDevelop.Core, Version=2.6.0.0, Culture=neutral">
-      <Package>monodevelop</Package>
-      <Private>False</Private>
+    <Reference Include="ICSharpCode.NRefactory">
+      <HintPath>Dlls\ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
-    <Reference Include="MonoDevelop.Ide, Version=2.6.0.0, Culture=neutral">
-      <Private>False</Private>
-      <Package>monodevelop</Package>
+    <Reference Include="Mono.Addins">
+      <HintPath>Dlls\Mono.Addins.dll</HintPath>
     </Reference>
-    <Reference Include="MonoDevelop.SourceEditor2, Version=2.6.0.0, Culture=neutral">
-      <Private>False</Private>
-      <Package>monodevelop-core-addins</Package>
+    <Reference Include="Mono.TextEditor">
+      <HintPath>Dlls\Mono.TextEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.TextEditor, Version=1.0.0.0, Culture=neutral">
-      <Private>False</Private>
-      <Package>monodevelop</Package>
+    <Reference Include="MonoDevelop.Core">
+      <HintPath>Dlls\MonoDevelop.Core.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.NRefactory, Version=5.0.0.0, Culture=neutral, PublicKeyToken=d4bfe873e7598c49">
-      <Package>monodevelop</Package>
-      <Private>False</Private>
+    <Reference Include="MonoDevelop.Ide">
+      <HintPath>Dlls\MonoDevelop.Ide.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Posix" />
   </ItemGroup>
@@ -126,10 +117,10 @@
     <Compile Include="Project\LuaExectionCommand.cs" />
     <Compile Include="Gui\InterpreterOptions.cs" />
     <Compile Include="gtk-gui\LuaBinding.InterpreterOptions.cs" />
-    <Compile Include="Syntax\LyaSyntaxMode.cs" />
     <Compile Include="Auto\LuaTextEditorIndentation.cs" />
     <Compile Include="Auto\LuaTextEditorCompletion.cs" />
     <Compile Include="Auto\LuaParser.cs" />
+    <Compile Include="Syntax\LuaSyntaxMode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
