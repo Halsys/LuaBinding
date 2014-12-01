@@ -86,18 +86,18 @@ namespace LuaBinding
 			var config = DefaultConfiguration as LuaConfiguration;
 
 			if (config != null && !string.IsNullOrEmpty(config.Launcher) && config.LangVersion == LangVersion.Moai) {
-				monitor.ReportWarning("Can't build a with Moai syntax!");
-				return new BuildResult("Can't build a with Moai syntax!", 0, 0);
+				monitor.ReportWarning("Can't build project with Moai syntax!");
+				return new BuildResult("Can't build project with Moai syntax!", 0, 0);
 			}
 
 			if (config != null && !string.IsNullOrEmpty(config.Launcher) && config.LangVersion == LangVersion.Love) {
-				monitor.ReportWarning("Can't build a with Love syntax!");
-				return new BuildResult("Can't build a with Love syntax!", 0, 0);
+				monitor.ReportWarning("Can't build project with Love syntax!");
+				return new BuildResult("Can't build project with Love syntax!", 0, 0);
 			}
 
 			if (config != null && config.LangVersion == LangVersion.GarrysMod) {
-				monitor.ReportWarning("Can't build a with Garry's Mod Lua syntax!");
-				return new BuildResult("Can't build a with Garry's Mod Lua syntax!", 0, 0);
+				monitor.ReportWarning("Can't build project with Garry's Mod Lua syntax!");
+				return new BuildResult("Can't build project with Garry's Mod Lua syntax!", 0, 0);
 			}
 
 			return LuaCompilerManager.Compile(Items, config, configuration, monitor);
@@ -116,11 +116,16 @@ namespace LuaBinding
 			var aggregatedMonitor = new AggregatedOperationMonitor(monitor);
 
 			try {
-				string param = string.Format("\"{0}\" {1}", config.MainFile, config.CommandLineParameters);
+				string param;
 
+				if (config.LangVersion != LangVersion.Love)
+					param = string.Format("\"{0}\" {1}", config.MainFile, config.CommandLineParameters);
+				else
+					param = string.Format("\"{0}\" {1}", ItemDirectory, config.CommandLineParameters);
+					
 				IProcessAsyncOperation op = 
 					Runtime.ProcessService.StartConsoleProcess(GetLuaPath(config),
-						param, BaseDirectory,
+						param, (config.LangVersion != LangVersion.Love) ? BaseDirectory : ItemDirectory,
 						config.EnvironmentVariables, console, null);
 
 				monitor.CancelRequested += delegate {
@@ -172,7 +177,6 @@ namespace LuaBinding
 
 			{ // check that the interpreter is set
 				FilePath LuaPath = GetLuaPath(config);
-				Console.WriteLine(LuaPath.FullPath);
 
 				if (string.IsNullOrWhiteSpace(LuaPath))
 					return false;
