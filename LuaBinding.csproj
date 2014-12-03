@@ -10,6 +10,7 @@
     <AssemblyName>LuaBinding</AssemblyName>
     <RootNamespace>LuaBinding</RootNamespace>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseMSBuildEngine>False</UseMSBuildEngine>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -101,6 +102,8 @@
     <EmbeddedResource Include="Syntax\GarrysModLuaSyntaxMode.xml">
       <LogicalName>GarrysModLuaSyntaxMode.xml</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="garrysmod_definitions.txt" />
+    <EmbeddedResource Include="Moai_definitions.txt" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -126,7 +129,6 @@
   <ItemGroup>
     <None Include="addin-project.xml" />
     <None Include=".gitignore" />
-    <None Include="garrysmod_definitions.txt" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>

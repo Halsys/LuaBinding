@@ -11,25 +11,25 @@ namespace LuaBinding
 	{
 		string GetSyntaxMode()
 		{
-			if( Document == null )
+			if (Document == null)
 				return "LuaSyntaxMode.xml";
 				
-			var project = IdeApp.Workspace.GetProjectsContainingFile(Document.FileName ) as LuaProject;
+			var project = IdeApp.Workspace.GetProjectsContainingFile(Document.FileName) as LuaProject;
 
-			if( project != null )
-			{
+			if (project != null) {
 				var config = project.DefaultConfiguration as LuaConfiguration;
 
-				Console.WriteLine( "Using {0} Lua highlighting", config.LangVersion );
-				switch( config.LangVersion )
-				{
-				case LangVersion.Lua: // TODO: Make these use their own, maybe
-				case LangVersion.Lua52:
-				case LangVersion.Lua51:
-				case LangVersion.LuaJIT:
-					return "LuaSyntaxMode.xml";
-				case LangVersion.GarrysMod:
-					return "GarrysModLuaSyntaxMode.xml";
+				Console.WriteLine("Using {0} Lua highlighting", config.LangVersion);
+				switch (config.LangVersion) {
+					case LangVersion.Lua: // TODO: Make these use their own, maybe
+					case LangVersion.Lua52:
+					case LangVersion.Lua51:
+					case LangVersion.LuaJIT:
+					case LangVersion.Love:
+					case LangVersion.Moai:
+						return "LuaSyntaxMode.xml";
+					case LangVersion.GarrysMod:
+						return "GarrysModLuaSyntaxMode.xml";
 				}
 			}
 

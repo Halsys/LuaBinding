@@ -1,0 +1,1498 @@
+_G	MOAICpBody	 {}
+MOAICpBody	activate ( MOAICpBody self )
+MOAICpBody	addCircle ( MOAIBox2DBody self, number x, number y, number radius )
+MOAICpBody	addPolygon ( MOAIBox2DBody self, table verts )
+MOAICpBody	addRect ( MOAIBox2DBody self, number xMin, number yMin, number xMax, number yMax, number angle )
+MOAICpBody	addSegment ( MOAICpBody self, number x1, number y1, number x2, number y2 [, number radius ] )
+MOAICpBody	applyForce ( MOAIBox2DBody self, number forceX, number forceY [, number pointX, number pointY ] )
+MOAICpBody	applyImpulse ( MOAICpBody self, number jx, number jy, number rx, number ry )
+MOAICpBody	getAngle ( MOAIBox2DBody self )
+MOAICpBody	getAngVel ( MOAICpBody self )
+MOAICpBody	getForce ( MOAICpBody self )
+MOAICpBody	getMass ( MOAIBox2DBody self )
+MOAICpBody	getMoment ( MOAICpBody self )
+MOAICpBody	getPosition ( MOAIBox2DBody self )
+MOAICpBody	getRot ( MOAICpBody self )
+MOAICpBody	getTorque ( MOAICpBody self )
+MOAICpBody	getVel ( MOAICpBody self )
+MOAICpBody	isRogue ( MOAICpBody self )
+MOAICpBody	isSleeping ( MOAICpBody self )
+MOAICpBody	isStatic ( MOAICpBody self )
+MOAICpBody	localToWorld ( MOAICpBody self, number rx, number ry )
+MOAICpBody	new ( number m, number i )
+MOAICpBody	newStatic ()
+MOAICpBody	resetForces ( MOAICpBody self )
+MOAICpBody	setAngle ( MOAICpBody self, number angle )
+MOAICpBody	setAngVel ( MOAICpBody self, number angvel )
+MOAICpBody	resetForces ( MOAICpBody self )
+MOAICpBody	resetMassData ( MOAIBox2DBody self )
+MOAICpBody	setMoment ( MOAICpBody self, number moment )
+MOAICpBody	setPos ( MOAICpBody self, number x, number y )
+MOAICpBody	setRemoveFlag ( MOAICpBody self, number flag )
+MOAICpBody	setTorque ( MOAICpBody self, number torque )
+MOAICpBody	setVel ( MOAICpBody self, number x, number y )
+MOAICpBody	sleep ( MOAICpBody self )
+MOAICpBody	sleepWithGroup ( MOAICpBody self, MOAICpBody group )
+MOAICpBody	worldToLocal ( MOAICpBody self, number ax, number ay )
+
+_G	MOAICpSpace	 {}
+MOAICpSpace	activateShapesTouchingShape ( MOAICpSpace self, MOAICpShape shape )
+MOAICpSpace	getDampingRatio ( MOAIBox2DDistanceJoint self )
+MOAICpSpace	getGravity ( MOAIBox2DWorld self )
+MOAICpSpace	getIdleSpeedThreshold ( MOAICpSpace self )
+MOAICpSpace	getIterations ( MOAICpSpace self )
+MOAICpSpace	getSleepTimeThreshold ( MOAICpSpace self )
+MOAICpSpace	getStaticBody ( MOAICpSpace self )
+MOAICpSpace	insertProp ( MOAICpSpace self, MOAICpPrim prop )
+MOAICpSpace	rehashShape ( MOAICpSpace self )
+MOAICpSpace	rehashStatic ( MOAICpSpace self )
+MOAICpSpace	removeProp ( MOAICpSpace self, MOAICpPrim prop )
+MOAICpSpace	resizeActiveHash ( MOAICpSpace self, number dim, number count )
+MOAICpSpace	resizeStaticHash ( MOAICpSpace self, number dim, number count )
+MOAICpSpace	setCollisionHandler ( MOAIBox2DFixture self, handler [, number phaseMask, number categoryMask ] )
+MOAICpSpace	setDampingRatio ( MOAIBox2DDistanceJoint self [, number dampingRatio ] )
+MOAICpSpace	setGravity ( MOAIBox2DWorld self [, number gravityX, number gravityY ] )
+MOAICpSpace	setIdleSpeedThreshold ( MOAICpSpace self, number threshold )
+MOAICpSpace	setIterations ( MOAIBox2DWorld self [, number velocityIteratons, number positionIterations ] )
+MOAICpSpace	setSleepTimeThreshold ( MOAICpSpace self, number threshold )
+MOAICpSpace	shapeForPoint ( MOAICpSpace self, number x, number y [, number layers, number group ] )
+MOAICpSpace	shapeForSegment ( MOAICpSpace self, number x1, number y1, number x2, number y2 [, number layers, number group ] )
+MOAICpSpace	shapeListForPoint ( MOAICpSpace self, number x, number y [, number layers, number group ] )
+MOAICpSpace	shapeListForRect ( MOAICpSpace self, number xMin, number yMin, number xMax, number yMax [, number layers, number group ] )
+MOAICpSpace	shapeListForSegment ( MOAICpSpace self, number x1, number y1, number x2, number y2 [, number layers, number group ] )
+
+_G	MOAIParticleScript	 {}
+MOAIParticleScript	addChild ( MOAIAction self, MOAIAction child )
+MOAIParticleScript	angleVec ( MOAIParticleScript self, number r0, number r1, number v0 )
+MOAIParticleScript	cos ( MOAIParticleScript self, number r0, number v0 )
+MOAIParticleScript	cycle ( MOAIParticleScript self, number r0, number v0, number v1, number v2 )
+MOAIParticleScript	div ( MOAIParticleScript self, number r0, number v0, number v1 )
+MOAIParticleScript	release ( MOAIFmodExSound self )
+MOAIParticleScript	easeDelta ( MOAIParticleScript self, number r0, number v0, number v1, number easeType )
+MOAIParticleScript	mul ( MOAIParticleScript self, number r0, number v0, number v1 )
+MOAIParticleScript	norm ( MOAIParticleScript self, number r0, number r1, number v0, number v1 )
+MOAIParticleScript	packConst ( MOAIParticleScript self, number const )
+MOAIParticleScript	packReg ( MOAIParticleScript self, number regIdx )
+MOAIParticleScript	rand ( MOAIParticleScript self, number r0, number v0, number v1 )
+MOAIParticleScript	randVec ( MOAIParticleScript self, number r0, number r1, number v0, number v1 )
+MOAIParticleScript	setProfilingEnabled ( [ boolean enable ] )
+MOAIParticleScript	_singletonHello ()
+MOAIParticleScript	sprite ( MOAIParticleScript self )
+MOAIParticleScript	share ( string prompt, string subject, string text )
+MOAIParticleScript	getDampingRatio ( MOAIBox2DDistanceJoint self )
+MOAIParticleScript	getValueAtTime ( MOAIAnimCurve self, number time )
+MOAIParticleScript	vecAngle ( MOAIParticleScript self, number r0, number v0, number v1 )
+MOAIParticleScript	wrapCoord ( MOAIGridSpace self, number xTile, number yTile )
+
+_G	MOAIBox2DWorld	 {}
+MOAIBox2DWorld	addBody ( MOAIBox2DWorld self, number type [, number x, number y ] )
+MOAIBox2DWorld	addDistanceJoint ( MOAIBox2DWorld self, MOAIBox2DBody bodyA, MOAIBox2DBody bodyB, number anchorA_X, number anchorA_Y, number anchorB_X, number anchorB_Y [, number frequencyHz, number dampingRatio, number collideConnected ] )
+MOAIBox2DWorld	addFrictionJoint ( MOAIBox2DWorld self, MOAIBox2DBody bodyA, MOAIBox2DBody bodyB, number anchorX, number anchorY [, number maxForce, number maxTorque ] )
+MOAIBox2DWorld	addGearJoint ( MOAIBox2DWorld self, MOAIBox2DJoint jointA, MOAIBox2DJoint jointB, float ratio )
+MOAIBox2DWorld	addMouseJoint ( MOAIBox2DWorld self, MOAIBox2DBody bodyA, MOAIBox2DBody bodyB, number targetX, number targetY, number maxForce [, number frequencyHz, number dampingRatio ] )
+MOAIBox2DWorld	addPrismaticJoint ( MOAIBox2DWorld self, MOAIBox2DBody bodyA, MOAIBox2DBody bodyB, number anchorA, number anchorB, number axisA, number axisB )
+MOAIBox2DWorld	addPulleyJoint ( MOAIBox2DWorld self, MOAIBox2DBody bodyA, MOAIBox2DBody bodyB, number groundAnchorA_X, number groundAnchorA_Y, number groundAnchorB_X, number groundAnchorB_Y, number anchorA_X, number anchorA_Y, number anchorB_X, number anchorB_Y, number ratio, number maxLengthA, number maxLengthB )
+MOAIBox2DWorld	addRevoluteJoint ( MOAIBox2DWorld self, MOAIBox2DBody bodyA, MOAIBox2DBody bodyB, number anchorX, number anchorY )
+MOAIBox2DWorld	addRopeJoint ( MOAIBox2DWorld self, MOAIBox2DBody bodyA, MOAIBox2DBody bodyB, number maxLength [, number anchorAX, number anchorAY, number anchorBX, number anchorBY, number collideConnected ] )
+MOAIBox2DWorld	addWeldJoint ( MOAIBox2DWorld self, MOAIBox2DBody bodyA, MOAIBox2DBody bodyB, number anchorX, number anchorY )
+MOAIBox2DWorld	addWheelJoint ( MOAIBox2DWorld self, MOAIBox2DBody bodyA, MOAIBox2DBody bodyB, number anchorX, number anchorY, number axisX, number axisY )
+MOAIBox2DWorld	getAngularSleepTolerance ( MOAIBox2DWorld self )
+MOAIBox2DWorld	getAutoClearForces ( MOAIBox2DWorld self )
+MOAIBox2DWorld	getGravity ( MOAIBox2DWorld self )
+MOAIBox2DWorld	getLinearSleepTolerance ( MOAIBox2DWorld self )
+MOAIBox2DWorld	getTimeToSleep ( MOAIBox2DWorld self )
+MOAIBox2DWorld	setAngularSleepTolerance ( MOAIBox2DWorld self [, number angularSleepTolerance ] )
+MOAIBox2DWorld	setAutoClearForces ( MOAIBox2DWorld self [, boolean autoClearForces ] )
+MOAIBox2DWorld	setDebugDrawEnabled ( MOAIBox2dWorld self, number bEnable )
+MOAIBox2DWorld	setDebugDrawFlags ( MOAIBox2DWorld self [, number flags ] )
+MOAIBox2DWorld	setGravity ( MOAIBox2DWorld self [, number gravityX, number gravityY ] )
+MOAIBox2DWorld	setIterations ( MOAIBox2DWorld self [, number velocityIteratons, number positionIterations ] )
+MOAIBox2DWorld	setLinearSleepTolerance ( MOAIBox2DWorld self [, number linearSleepTolerance ] )
+MOAIBox2DWorld	setTimeToSleep ( MOAIBox2DWorld self [, number timeToSleep ] )
+MOAIBox2DWorld	setUnitsToMeters ( MOAIBox2DWorld self [, number unitsToMeters ] )
+
+_G	MOAIBox2DBody	 {}
+MOAIBox2DBody	addChain ( MOAIBox2DBody self, table verts [, boolean closeChain ] )
+MOAIBox2DBody	addCircle ( MOAIBox2DBody self, number x, number y, number radius )
+MOAIBox2DBody	addEdges ( MOAIBox2DBody self, table verts )
+MOAIBox2DBody	addPolygon ( MOAIBox2DBody self, table verts )
+MOAIBox2DBody	addRect ( MOAIBox2DBody self, number xMin, number yMin, number xMax, number yMax, number angle )
+MOAIBox2DBody	applyAngularImpulse ( MOAIBox2DBody self, number angularImpulse )
+MOAIBox2DBody	applyForce ( MOAIBox2DBody self, number forceX, number forceY [, number pointX, number pointY ] )
+MOAIBox2DBody	applyLinearImpulse ( MOAIBox2DBody self, number impulseX, number impulseY [, number pointX, number pointY ] )
+MOAIBox2DBody	applyTorque ( MOAIBox2DBody self [, number torque ] )
+MOAIBox2DBody	destroy ( MOAIBox2DBody self )
+MOAIBox2DBody	getAngle ( MOAIBox2DBody self )
+MOAIBox2DBody	getAngularVelocity ( MOAIBox2DBody self )
+MOAIBox2DBody	getInertia ( MOAIBox2DBody self )
+MOAIBox2DBody	getLinearVelocity ( MOAIBox2DBody self )
+MOAIBox2DBody	getLocalCenter ( MOAIBox2DBody self )
+MOAIBox2DBody	getMass ( MOAIBox2DBody self )
+MOAIBox2DBody	getPosition ( MOAIBox2DBody self )
+MOAIBox2DBody	getWorldCenter ( MOAIBox2DBody self )
+MOAIBox2DBody	isActive ( MOAIAction self )
+MOAIBox2DBody	isAwake ( MOAIBox2DBody self )
+MOAIBox2DBody	isBullet ( MOAIBox2DBody self )
+MOAIBox2DBody	isFixedRotation ( MOAIBox2DBody self )
+MOAIBox2DBody	resetMassData ( MOAIBox2DBody self )
+MOAIBox2DBody	setActive ( MOAIBox2DBody self [, boolean active ] )
+MOAIBox2DBody	setAngularDamping ( MOAIBox2DBody self, number damping )
+MOAIBox2DBody	setAngularVelocity ( MOAIBox2DBody self [, number omega ] )
+MOAIBox2DBody	setAwake ( MOAIBox2DBody self [, boolean awake ] )
+MOAIBox2DBody	setBullet ( MOAIBox2DBody self [, boolean bullet ] )
+MOAIBox2DBody	setFixedRotation ( MOAIBox2DBody self [, boolean fixedRotation ] )
+MOAIBox2DBody	setLinearDamping ( MOAIBox2DBody self [, number damping ] )
+MOAIBox2DBody	setLinearVelocity ( MOAIBox2DBody self [, number velocityX, number velocityY ] )
+MOAIBox2DBody	resetMassData ( MOAIBox2DBody self )
+MOAIBox2DBody	setTransform ( MOAIBox2DBody self [, number positionX, number positionY, number angle ] )
+
+_G	MOAIAction	 {}
+MOAIAction	addChild ( MOAIAction self, MOAIAction child )
+MOAIAction	attach ( MOAIAction self [, MOAIAction parent ] )
+MOAIAction	clear ( MOAIAction self )
+MOAIAction	detach ( MOAIAction self )
+MOAIAction	isActive ( MOAIAction self )
+MOAIAction	isBusy ( MOAIAction self )
+MOAIAction	isDone ( MOAIAction self )
+MOAIAction	pause ( MOAIAction self [, bool pause ] )
+MOAIAction	start ( MOAIAction self [, MOAIAction parent ] )
+MOAIAction	stop ( MOAIAction self )
+MOAIAction	throttle ( MOAIAction self [, number throttle ] )
+
+_G	MOAITransform	 {}
+MOAITransform	addLoc ( MOAITransform self, number xDelta, number yDelta, number zDelta )
+MOAITransform	addPiv ( MOAITransform self, number xDelta, number yDelta, number zDelta )
+MOAITransform	addRot ( MOAITransform self, number xDelta, number yDelta, number zDelta )
+MOAITransform	addScl ( MOAITransform self, number xSclDelta [, number ySclDelta, number zSclDelta ] )
+MOAITransform	getLocalCenter ( MOAIBox2DBody self )
+MOAITransform	getPiv ( MOAITransform self )
+MOAITransform	getRot ( MOAICpBody self )
+MOAITransform	getScl ( MOAITransform self )
+MOAITransform	modelToWorld ( MOAITransform self [, number x, number y, number z ] )
+MOAITransform	removeAnchor ( MOAICameraFitter2D self, MOAICameraAnchor2D anchor )
+MOAITransform	moveLoc ( MOAITransform self, number xDelta, number yDelta, number zDelta, number length [, number mode ] )
+MOAITransform	movePiv ( MOAITransform self, number xDelta, number yDelta, number zDelta, number length [, number mode ] )
+MOAITransform	moveRot ( MOAITransform self, number xDelta, number yDelta, number zDelta, number length [, number mode ] )
+MOAITransform	moveScl ( MOAITransform self, number xSclDelta, number ySclDelta, number zSclDelta, number length [, number mode ] )
+MOAITransform	seekColor ( MOAIColor self, number rGoal, number gGoal, number bGoal, number aGoal, number length [, number mode ] )
+MOAITransform	seekLoc ( MOAITransform self, number xGoal, number yGoal, number zGoal, number length [, number mode ] )
+MOAITransform	seekPiv ( MOAITransform self, number xGoal, number yGoal, number zGoal, number length [, number mode ] )
+MOAITransform	seekRot ( MOAITransform self, number xRotGoal, number yRotGoal, number zRotGoal, number length [, number mode ] )
+MOAITransform	seekScl ( MOAITransform self, number xSclGoal, number ySclGoal, number zSclGoal, number length [, number mode ] )
+MOAITransform	setLoc ( MOAITransform self [, number x, number y, number z ] )
+MOAITransform	setParent ( MOAICameraAnchor2D self [, MOAITransformBase parent ] )
+MOAITransform	setPiv ( MOAITransform self [, number xPiv, number yPiv, number zPiv ] )
+MOAITransform	setRot ( MOAITransform self [, number xRot, number yRot, number zRot ] )
+MOAITransform	setScl ( MOAITransform self, number xScl [, number yScl, number zScl ] )
+MOAITransform	setShearByX ( MOAITransform self, number yx [, number zx ] )
+MOAITransform	setShearByY ( MOAITransform self, number xy [, number zy ] )
+MOAITransform	setShearByZ ( MOAITransform self, number xz [, number yz ] )
+MOAITransform	worldToModel ( MOAITransform self [, number x, number y, number z ] )
+
+_G	MOAITransform2D	 {}
+MOAITransform2D	addLoc ( MOAITransform self, number xDelta, number yDelta, number zDelta )
+MOAITransform2D	addPiv ( MOAITransform self, number xDelta, number yDelta, number zDelta )
+MOAITransform2D	addRot ( MOAITransform self, number xDelta, number yDelta, number zDelta )
+MOAITransform2D	addScl ( MOAITransform self, number xSclDelta [, number ySclDelta, number zSclDelta ] )
+MOAITransform2D	getLocalCenter ( MOAIBox2DBody self )
+MOAITransform2D	getPiv ( MOAITransform self )
+MOAITransform2D	getRot ( MOAICpBody self )
+MOAITransform2D	getScl ( MOAITransform self )
+MOAITransform2D	modelToWorld ( MOAITransform self [, number x, number y, number z ] )
+MOAITransform2D	removeAnchor ( MOAICameraFitter2D self, MOAICameraAnchor2D anchor )
+MOAITransform2D	moveLoc ( MOAITransform self, number xDelta, number yDelta, number zDelta, number length [, number mode ] )
+MOAITransform2D	movePiv ( MOAITransform self, number xDelta, number yDelta, number zDelta, number length [, number mode ] )
+MOAITransform2D	moveRot ( MOAITransform self, number xDelta, number yDelta, number zDelta, number length [, number mode ] )
+MOAITransform2D	moveScl ( MOAITransform self, number xSclDelta, number ySclDelta, number zSclDelta, number length [, number mode ] )
+MOAITransform2D	seekColor ( MOAIColor self, number rGoal, number gGoal, number bGoal, number aGoal, number length [, number mode ] )
+MOAITransform2D	seekLoc ( MOAITransform self, number xGoal, number yGoal, number zGoal, number length [, number mode ] )
+MOAITransform2D	seekPiv ( MOAITransform self, number xGoal, number yGoal, number zGoal, number length [, number mode ] )
+MOAITransform2D	seekRot ( MOAITransform self, number xRotGoal, number yRotGoal, number zRotGoal, number length [, number mode ] )
+MOAITransform2D	seekScl ( MOAITransform self, number xSclGoal, number ySclGoal, number zSclGoal, number length [, number mode ] )
+MOAITransform2D	setLoc ( MOAITransform self [, number x, number y, number z ] )
+MOAITransform2D	setParent ( MOAICameraAnchor2D self [, MOAITransformBase parent ] )
+MOAITransform2D	setPiv ( MOAITransform self [, number xPiv, number yPiv, number zPiv ] )
+MOAITransform2D	setRot ( MOAITransform self [, number xRot, number yRot, number zRot ] )
+MOAITransform2D	setScl ( MOAITransform self, number xScl [, number yScl, number zScl ] )
+MOAITransform2D	worldToModel ( MOAITransform self [, number x, number y, number z ] )
+
+_G	MOAIFileSystem	 {}
+MOAIFileSystem	affirmPath ( string path )
+MOAIFileSystem	checkFileExists ( string filename )
+MOAIFileSystem	checkPathExists ( string path )
+MOAIFileSystem	copy ( string srcPath, string destPath )
+MOAIFileSystem	deleteDirectory ( string path, boolean (Optional) )
+MOAIFileSystem	deleteFile ( string filename )
+MOAIFileSystem	getAbsoluteDirectoryPath ( string path )
+MOAIFileSystem	getAbsoluteFilePath ( string filename )
+MOAIFileSystem	getRelativePath ( string path )
+MOAIFileSystem	getWorkingDirectory ()
+MOAIFileSystem	listDirectories ( [ string path ] )
+MOAIFileSystem	listFiles ( [ string path ] )
+MOAIFileSystem	mountVirtualDirectory ( string path [, string archive ] )
+MOAIFileSystem	rename ( string oldPath, string newPath )
+MOAIFileSystem	setWorkingDirectory ( string path )
+
+_G	MOAITextBox	 {}
+MOAITextBox	affirmStyle ( MOAITextBox self )
+MOAITextBox	clearHighlights ( MOAITextBox self )
+MOAITextBox	getGlyphScale ( MOAITextBox self )
+MOAITextBox	getLineSpacing ( MOAITextBox self )
+MOAITextBox	getRect ( MOAIScissorRect self )
+MOAITextBox	getStringBounds ( MOAITextBox self, number index, number size )
+MOAITextBox	getStyle ( MOAITextBox self )
+MOAITextBox	more ( MOAITextBox self )
+MOAITextBox	nextPage ( MOAITextBox self )
+MOAITextBox	reserveCurves ( MOAITextBox self, number nCurves )
+MOAITextBox	revealAll ( MOAITextBox self )
+MOAITextBox	setAlignment ( MOAITextBox self, enum hAlignment, enum vAlignment )
+MOAITextBox	setCurve ( MOAITextBox self, number curveID, MOAIAnimCurve curve )
+MOAITextBox	setFont ( MOAITextBox self, MOAIFont font )
+MOAITextBox	setGlyphScale ( MOAITextBox self [, number glyphScale ] )
+MOAITextBox	setHighlight ( MOAITextBox self, number index, number size, number r, number g, number b [, number a ] )
+MOAITextBox	setLineSpacing ( MOAITextBox self, number lineSpacing )
+MOAITextBox	setRect ( MOAICameraAnchor2D self, number xMin, number yMin, number xMax, number yMax )
+MOAITextBox	setReveal ( MOAITextBox self, number reveal )
+MOAITextBox	setSpeed ( MOAITextBox self, number speed )
+MOAITextBox	setString ( MOAIDataBuffer self, string data )
+MOAITextBox	setStyle ( number styleID [, number size, number r, number g, number b, number a ] )
+MOAITextBox	setTextSize ( MOAITextBox self, number points [, number dpi ] )
+MOAITextBox	setWordBreak ( MOAITextBox self [, number rule ] )
+MOAITextBox	setYFlip ( MOAITextBox self, number yFlip )
+MOAITextBox	spool ( MOAITextBox self, number yFlip )
+
+_G	MOAIAnim	 {}
+MOAIAnim	apply ( MOAIAnim self [, number t0 ] )
+MOAIAnim	getLength ( MOAIAnim self )
+MOAIAnim	reserveLinks ( MOAIAnim self, number nLinks )
+MOAIAnim	setLink ( MOAIAnim self, number linkID, MOAIAnimCurveBase curve, MOAINode target, number attrID [, boolean asDelta ] )
+
+_G	MOAICpShape	 {}
+MOAICpShape	areaForCircle ( number radius )
+MOAICpShape	areaForPolygon
+MOAICpShape	areaForRect ( number x1, number y1, number x2, number y2 )
+MOAICpShape	areaForSegment ( number x1, number y1, number x2, number y2, number r )
+MOAICpShape	getBody ( MOAIBox2DFixture self )
+MOAICpShape	getElasticity ( MOAICpShape self )
+MOAICpShape	getFriction ( MOAICpShape self )
+MOAICpShape	getGroup ( MOAICpShape self )
+MOAICpShape	getLayers ( MOAICpShape self )
+MOAICpShape	getSurfaceVel ( MOAICpShape self )
+MOAICpShape	getType ( MOAICpShape self )
+MOAICpShape	inside ( MOAICpShape self, number x, number y )
+MOAICpShape	setSensor ( MOAIBox2DFixture self [, boolean isSensor ] )
+MOAICpShape	momentForCircle ( number m, number r2, number ox, number oy [, number r1 ] )
+MOAICpShape	momentForPolygon ( number m, table polygon )
+MOAICpShape	momentForRect ( number m, number x1, number y1, number x2, number y2 )
+MOAICpShape	momentForSegment ( number m, number x1, number y1, number x2, number y2 )
+MOAICpShape	setElasticity ( MOAICpShape self, number elasticity )
+MOAICpShape	setFriction ( MOAIBox2DFixture self, number friction )
+MOAICpShape	setGroup ( MOAICpShape self, number group )
+MOAICpShape	setIsSensor ( MOAICpShape self, boolean sensor )
+MOAICpShape	setLayers ( MOAICpShape self, number layer )
+MOAICpShape	setSurfaceVel ( MOAICpShape self, number x, number y )
+MOAICpShape	setType ( MOAICpShape self, number type )
+
+_G	MOAIGameCenterIOS	 {}
+MOAIGameCenterIOS	authenticatePlayer ( nil )
+MOAIGameCenterIOS	getPlayerAlias ( nil )
+MOAIGameCenterIOS	getScores ( [ string category, number playerScope, number timeScope, number startRange, number endRange ] )
+MOAIGameCenterIOS	isSupported ( nil )
+MOAIGameCenterIOS	reportAchievementProgress ( string identifier, number percentComplete )
+MOAIGameCenterIOS	reportScore ( number score, string category )
+MOAIGameCenterIOS	setGetScoresCallback
+MOAIGameCenterIOS	showDefaultAchievements
+MOAIGameCenterIOS	showDefaultLeaderboard ( nil )
+
+_G	MOAIDataBuffer	 {}
+MOAIDataBuffer	base64Decode ( [ MOAIDataBuffer self, string data ] )
+MOAIDataBuffer	base64Encode ( [ MOAIDataBuffer self, string data ] )
+MOAIDataBuffer	deflate ( number level, number windowBits [, MOAIDataBuffer self, string data ] )
+MOAIDataBuffer	getSize ( MOAIDataBuffer self )
+MOAIDataBuffer	getString ( MOAIDataBuffer self )
+MOAIDataBuffer	hexDecode ( [ MOAIDataBuffer self, string data ] )
+MOAIDataBuffer	hexEncode ( [ MOAIDataBuffer self, string data ] )
+MOAIDataBuffer	inflate ( number windowBits [, MOAIDataBuffer self, string data ] )
+MOAIDataBuffer	requestPurchase ( string sku [, string payload ] )
+MOAIDataBuffer	loadAsync ( MOAIDataBuffer self, string filename, MOAITaskQueue queue [, callback, number detectZip, bool inflateAsync, number windowBits ] )
+MOAIDataBuffer	save ( MOAIDataBuffer self, string filename )
+MOAIDataBuffer	saveAsync ( MOAIDataBuffer self, string filename, MOAITaskQueue queue [, callback ] )
+MOAIDataBuffer	setString ( MOAIDataBuffer self, string data )
+MOAIDataBuffer	toCppHeader ( string data, string name [, number columns ] )
+
+_G	MOAIImage	 {}
+MOAIImage	bleedRect ( MOAIImage self, number xMin, number yMin, number xMax, number yMax )
+MOAIImage	compare
+MOAIImage	convertColors ( MOAIImage self, number colorFmt )
+MOAIImage	copy ( string srcPath, string destPath )
+MOAIImage	copyBits ( MOAIImage self, MOAIImage source, number srcX, number srcY, number destX, number destY, number width, number height )
+MOAIImage	copyRect ( MOAIImage self, MOAIImage source, number srcXMin, number srcYMin, number srcXMax, number srcYMax, number destXMin, number destYMin [, number destXMax, number destYMax, number filter ] )
+MOAIImage	fillCircle ( number x, number y, number r, number steps )
+MOAIImage	fillRect ( number x0, number y0, number x1, number y1 )
+MOAIImage	getColor32 ( MOAIImage self, number x, number y )
+MOAIImage	getFormat ( MOAIImage self )
+MOAIImage	getRGBA ( MOAIImage self, number x, number y )
+MOAIImage	getSize ( MOAIDataBuffer self )
+MOAIImage	init ( string appId )
+MOAIImage	requestPurchase ( string sku [, string payload ] )
+MOAIImage	loadFromBuffer ( MOAIImage self, MOAIDataBuffer Buffer [, number transform ] )
+MOAIImage	padToPow2 ( MOAIImage self )
+MOAIImage	resizeActiveHash ( MOAICpSpace self, number dim, number count )
+MOAIImage	resizeCanvas ( MOAIImage self, number width, number height )
+MOAIImage	setColor32 ( MOAIImage self, number x, number y, number color )
+MOAIImage	setRGBA ( MOAIImage self, number x, number y, number r, number g, number b [, number a ] )
+MOAIImage	writePNG ( MOAIImage self, string filename )
+
+_G	MOAIVertexBuffer	 {}
+MOAIVertexBuffer	bless ( MOAIVertexBuffer self )
+MOAIVertexBuffer	release ( MOAIFmodExSound self )
+MOAIVertexBuffer	reserveLinks ( MOAIAnim self, number nLinks )
+MOAIVertexBuffer	reserveVerts ( MOAIVertexBuffer self, number size )
+MOAIVertexBuffer	resetMassData ( MOAIBox2DBody self )
+MOAIVertexBuffer	setFormat ( MOAIVertexBuffer self, MOAIVertexFormat format )
+MOAIVertexBuffer	writeColor32 ( MOAIVertexBuffer self [, number r, number g, number b, number a ] )
+MOAIVertexBuffer	writeFloat ( MOAIVertexBuffer self [, number f ] )
+MOAIVertexBuffer	writeInt16 ( MOAIVertexBuffer self [, number i ] )
+MOAIVertexBuffer	writeInt32 ( MOAIVertexBuffer self [, number i ] )
+MOAIVertexBuffer	writeInt8 ( MOAIVertexBuffer self [, number i ] )
+
+_G	MOAICoroutine	 {}
+MOAICoroutine	blockOnAction ( MOAIAction blocker )
+MOAICoroutine	currentThread ()
+MOAICoroutine	run ( MOAICoroutine self, threadFunc, ... )
+
+_G	MOAIWebViewIOS	 {}
+MOAIWebViewIOS	canGoBack ( MOAIWebViewIOSIOS self )
+MOAIWebViewIOS	canGoForward ( MOAIWebViewIOSIOS self )
+MOAIWebViewIOS	clickBack ( MOAIWebViewIOS self )
+MOAIWebViewIOS	clickForward ( MOAIWebViewIOS self )
+MOAIWebViewIOS	clickRefresh ( MOAIWebViewIOS self )
+MOAIWebViewIOS	clickStop ( MOAIWebViewIOS self )
+MOAIWebViewIOS	closeWebView ( MOAIWebViewIOS self )
+MOAIWebViewIOS	getAllowsInlineMediaPlayback ( MOAIWebViewIOS self )
+MOAIWebViewIOS	getCurrentRequest ( MOAIWebViewIOS self )
+MOAIWebViewIOS	getMediaPlaybackRequiresAction ( MOAIWebViewIOS self )
+MOAIWebViewIOS	getScalesPageToFit ( MOAIWebViewIOS self )
+MOAIWebViewIOS	hasToolBar ( MOAIWebViewIOS self, bool hasToolBar )
+MOAIWebViewIOS	hideWebView ( MOAIWebViewIOS self )
+MOAIWebViewIOS	initWebView ( MOAIWebViewIOS self )
+MOAIWebViewIOS	isHidden ( MOAIWebViewIOS self )
+MOAIWebViewIOS	isLoading ( MOAIWebViewIOS self )
+MOAIWebViewIOS	loadHTML ( MOAIWebViewIOS self, string string, string baseURL )
+MOAIWebViewIOS	loadRequest ( MOAIWebViewIOS self, string request )
+MOAIWebViewIOS	openUrlInSafari ( string url )
+MOAIWebViewIOS	runJavaScript ( MOAIWebViewIOS self, string script )
+MOAIWebViewIOS	setAllowsInlineMediaPlayback ( MOAIWebViewIOS self, bool allowsInlineMediaPlayback )
+MOAIWebViewIOS	setMediaPlaybackRequiresAction ( MOAIWebViewIOS self, bool mediaPlaybackRequiresAction )
+MOAIWebViewIOS	setScalesPageToFit ( MOAIWebViewIOS self, bool scalesPageToFit )
+MOAIWebViewIOS	showStyle ( number styleID [, boolean show ] )
+
+_G	MOAIBillingIOS	 {}
+MOAIBillingIOS	canMakePayments ()
+MOAIBillingIOS	requestPaymentForProduct ( string sku [, number quantity ] )
+MOAIBillingIOS	requestProductIdentifiers ( table skus )
+MOAIBillingIOS	restoreCompletedTransactions ()
+
+_G	MOAITwitterIOS	 {}
+MOAITwitterIOS	canTweet ()
+MOAITwitterIOS	composeTweet ( [ string text, string url ] )
+
+_G	MOAIParticleSystem	 {}
+MOAIParticleSystem	capParticles ( MOAIParticleSystem self [, boolean cap ] )
+MOAIParticleSystem	capSprites ( MOAIParticleSystem self [, boolean cap ] )
+MOAIParticleSystem	clearSprites ( MOAIParticleSystem self )
+MOAIParticleSystem	getState ( MOAIParticleSystem self )
+MOAIParticleSystem	isIdle ( MOAIParticleSystem self )
+MOAIParticleSystem	pushParticle ( MOAIParticleSystem self [, number x, number y, number dx, number dy ] )
+MOAIParticleSystem	pushSprite ( MOAIParticleSystem self, number x, number y [, number rot, number xScale, number yScale ] )
+MOAIParticleSystem	reserveParticles ( MOAIParticleSystem self, number nParticles, number particleSize )
+MOAIParticleSystem	reserveSprites ( MOAIParticleSystem self, number nSprites )
+MOAIParticleSystem	reserveStates ( MOAIParticleSystem self, number nStates )
+MOAIParticleSystem	setComputeBounds ( MOAIParticleSystem self [, boolean computBounds ] )
+MOAIParticleSystem	setSpriteColor ( MOAIParticleSystem self, number r, number g, number b, number a )
+MOAIParticleSystem	setSpriteDeckIdx ( MOAIParticleSystem self, number index )
+MOAIParticleSystem	setState ( MOAIParticleSystem self, number index, MOAIParticleState state )
+MOAIParticleSystem	surge ( MOAIParticleEmitter self [, number total ] )
+
+_G	MOAIGridSpace	 {}
+MOAIGridSpace	cellAddrToCoord ( MOAIGridSpace self, number xTile, number yTile )
+MOAIGridSpace	getCellAddr ( MOAIGridSpace self, number xTile, number yTile )
+MOAIGridSpace	getCellSize ( MOAIGridSpace self )
+MOAIGridSpace	getOffset ( MOAIGridSpace self )
+MOAIGridSpace	getSize ( MOAIDataBuffer self )
+MOAIGridSpace	getTileLoc ( MOAIGridSpace self, number xTile, number yTile [, number position ] )
+MOAIGridSpace	getTileSize ( MOAIGridSpace self )
+MOAIGridSpace	initDiamondGrid ( MOAIGridSpace self, number width, number height [, number tileWidth, number tileHeight, number xGutter, number yGutter ] )
+MOAIGridSpace	initHexGrid ( MOAIGridSpace self, number width, number height [, number radius, number xGutter, number yGutter ] )
+MOAIGridSpace	initObliqueGrid ( MOAIGridSpace self, number width, number height [, number tileWidth, number tileHeight, number xGutter, number yGutter ] )
+MOAIGridSpace	initRectGrid ( MOAIGridSpace self, number width, number height [, number tileWidth, number tileHeight, number xGutter, number yGutter ] )
+MOAIGridSpace	locToCellAddr ( MOAIGridSpace self, number x, number y )
+MOAIGridSpace	locToCoord ( MOAIGridSpace self, number x, number y )
+MOAIGridSpace	setRepeat ( MOAIGridSpace self [, boolean repeatX, boolean repeatY ] )
+MOAIGridSpace	setShape ( MOAIGridSpace self [, number shape ] )
+MOAIGridSpace	setSize ( MOAIGridSpace self, number width, number height [, number cellWidth, number cellHeight, number xOff, number yOff, number tileWidth, number tileHeight ] )
+MOAIGridSpace	wrapCoord ( MOAIGridSpace self, number xTile, number yTile )
+
+_G	MOAIBillingAndroid	 {}
+MOAIBillingAndroid	checkBillingSupported ()
+MOAIBillingAndroid	confirmNotification ( string notification )
+MOAIBillingAndroid	getUserId ()
+MOAIBillingAndroid	requestPurchase ( string sku [, string payload ] )
+MOAIBillingAndroid	restoreTransactions ( [ string offset ] )
+MOAIBillingAndroid	setBillingProvider ( int provider )
+MOAIBillingAndroid	setPublicKey ( string key )
+
+_G	MOAIFoo	 {}
+MOAIFoo	classHello ()
+MOAIFoo	instanceHello ()
+
+_G	MOAILayer	 {}
+MOAILayer	clear ( MOAIAction self )
+MOAILayer	getFitting ( MOAILayer self, number xMin, number yMin, number xMax, number yMax [, number xPad, number yPad ] )
+MOAILayer	getPartition ( MOAILayer self )
+MOAILayer	getSortMode ( MOAILayer self )
+MOAILayer	getSortScale ( MOAILayer2D self )
+MOAILayer	insertProp ( MOAICpSpace self, MOAICpPrim prop )
+MOAILayer	removeProp ( MOAICpSpace self, MOAICpPrim prop )
+MOAILayer	setBox2DWorld ( MOAILayer self, MOAIBox2DWorld world )
+MOAILayer	setCamera ( MOAICameraFitter2D self [, MOAITransform camera ] )
+MOAILayer	setCpSpace ( MOAILayer self, MOAICpSpace space )
+MOAILayer	setParallax ( MOAILayer self [, number xParallax, number yParallax, number zParallax ] )
+MOAILayer	setPartition ( MOAILayer self, MOAIPartition partition )
+MOAILayer	setPartitionCull2D ( MOAILayer self, boolean partitionCull2D )
+MOAILayer	setSortMode ( MOAILayer self, number sortMode )
+MOAILayer	setSortScale ( MOAILayer self [, number x, number y, number z, number priority ] )
+MOAILayer	setViewport ( MOAICameraFitter2D self [, MOAIViewport viewport ] )
+MOAILayer	showDebugLines ( MOAILayer self [, bool showDebugLines ] )
+MOAILayer	wndToWorld ( MOAILayer self, number x, number y, number z )
+MOAILayer	worldToWnd ( MOAILayer self, number x, number y, number Z )
+
+_G	MOAILayer2D	 {}
+MOAILayer2D	clear ( MOAIAction self )
+MOAILayer2D	getFitting ( MOAILayer self, number xMin, number yMin, number xMax, number yMax [, number xPad, number yPad ] )
+MOAILayer2D	getPartition ( MOAILayer self )
+MOAILayer2D	getSortMode ( MOAILayer self )
+MOAILayer2D	getSortScale ( MOAILayer2D self )
+MOAILayer2D	insertProp ( MOAICpSpace self, MOAICpPrim prop )
+MOAILayer2D	removeProp ( MOAICpSpace self, MOAICpPrim prop )
+MOAILayer2D	setBox2DWorld ( MOAILayer self, MOAIBox2DWorld world )
+MOAILayer2D	setCamera ( MOAICameraFitter2D self [, MOAITransform camera ] )
+MOAILayer2D	setCpSpace ( MOAILayer self, MOAICpSpace space )
+MOAILayer2D	setFrameBuffer ( MOAILayer2D self, MOAIFrameBufferTexture frameBuffer )
+MOAILayer2D	setParallax ( MOAILayer self [, number xParallax, number yParallax, number zParallax ] )
+MOAILayer2D	setPartition ( MOAILayer self, MOAIPartition partition )
+MOAILayer2D	setSortMode ( MOAILayer self, number sortMode )
+MOAILayer2D	setSortScale ( MOAILayer self [, number x, number y, number z, number priority ] )
+MOAILayer2D	setViewport ( MOAICameraFitter2D self [, MOAIViewport viewport ] )
+MOAILayer2D	showDebugLines ( MOAILayer self [, bool showDebugLines ] )
+MOAILayer2D	wndToWorld ( MOAILayer self, number x, number y, number z )
+MOAILayer2D	worldToWnd ( MOAILayer self, number x, number y, number Z )
+
+_G	MOAIPartition	 {}
+MOAIPartition	clear ( MOAIAction self )
+MOAIPartition	insertProp ( MOAICpSpace self, MOAICpPrim prop )
+MOAIPartition	propForPoint ( MOAIPartition self, number x, number y, number z [, number sortMode, number xScale, number yScale, number zScale, number priorityScale ] )
+MOAIPartition	propForRay ( MOAIPartition self, number x, number y, number z, number xdirection, number ydirection, number zdirection )
+MOAIPartition	propListForPoint ( MOAIPartition self, number x, number y, number z [, number sortMode, number xScale, number yScale, number zScale, number priorityScale ] )
+MOAIPartition	propListForRay ( MOAIPartition self, number x, number y, number z, number xdirection, number ydirection, number zdirection [, number sortMode, number xScale, number yScale, number zScale, number priorityScale ] )
+MOAIPartition	propListForRect ( MOAIPartition self, number xMin, number yMin, number xMax, number yMax [, number sortMode, number xScale, number yScale, number zScale, number priorityScale ] )
+MOAIPartition	removeProp ( MOAICpSpace self, MOAICpPrim prop )
+MOAIPartition	reserveLevels
+MOAIPartition	setLevel ( MOAIPartition self, number levelID, number cellSize, number xCells, number yCells )
+MOAIPartition	setPlane ( MOAIPartition self, number planeID )
+
+_G	MOAICameraFitter2D	 {}
+MOAICameraFitter2D	clearAnchors ( MOAICameraFitter2D self )
+MOAICameraFitter2D	clearFitMode ( MOAICameraFitter2D self [, number mask ] )
+MOAICameraFitter2D	getFitDistance ( MOAICameraFitter2D self )
+MOAICameraFitter2D	getFitLoc ( MOAICameraFitter2D self )
+MOAICameraFitter2D	getFitMode ( MOAICameraFitter2D self )
+MOAICameraFitter2D	getFitScale ( MOAICameraFitter2D self )
+MOAICameraFitter2D	getTargetLoc ( MOAICameraFitter2D self )
+MOAICameraFitter2D	getTargetScale ( MOAICameraFitter2D self )
+MOAICameraFitter2D	insertAnchor ( MOAICameraFitter2D self, MOAICameraAnchor2D anchor )
+MOAICameraFitter2D	removeAnchor ( MOAICameraFitter2D self, MOAICameraAnchor2D anchor )
+MOAICameraFitter2D	setBounds ( MOAIBoundsDeck self, number idx, number xMin, number yMin, number zMin, number xMax, number yMax, number zMax )
+MOAICameraFitter2D	setCamera ( MOAICameraFitter2D self [, MOAITransform camera ] )
+MOAICameraFitter2D	setDamper ( MOAICameraFitter2D self [, number damper ] )
+MOAICameraFitter2D	setFitLoc ( MOAICameraFitter2D self [, number x, number y, boolean snap ] )
+MOAICameraFitter2D	setFitMode ( MOAICameraFitter2D self [, number mask ] )
+MOAICameraFitter2D	setFitScale ( MOAICameraFitter2D self [, number scale, boolean snap ] )
+MOAICameraFitter2D	setMin ( MOAICameraFitter2D self [, number min ] )
+MOAICameraFitter2D	setViewport ( MOAICameraFitter2D self [, MOAIViewport viewport ] )
+MOAICameraFitter2D	snapToTarget ( MOAICameraFitter2D self )
+
+_G	MOAINode	 {}
+MOAINode	clearAttrLink ( MOAINode self, number attrID )
+MOAINode	clearNodeLink ( MOAINode self, MOAINode sourceNode )
+MOAINode	forceUpdate ( MOAINode self )
+MOAINode	getAttr ( MOAINode self, number attrID )
+MOAINode	getAttrLink ( MOAINode self, number attrID )
+MOAINode	moveAttr ( MOAINode self, number attrID, number delta, number length [, number mode ] )
+MOAINode	scheduleUpdate ( MOAINode self )
+MOAINode	seekAttr ( MOAINode self, number attrID, number goal, number length [, number mode ] )
+MOAINode	setAttr ( MOAINode self, number attrID, number value )
+MOAINode	setAttrLink ( MOAINode self, number attrID, MOAINode sourceNode [, number sourceAttrID ] )
+MOAINode	setNodeLink ( MOAINode self, MOAINode sourceNode )
+
+_G	MOAIParticleState	 {}
+MOAIParticleState	clearForces ( MOAIParticleState self )
+MOAIParticleState	pushForce ( MOAIParticleState self, MOAIParticleForce force )
+MOAIParticleState	setDampingRatio ( MOAIBox2DDistanceJoint self [, number dampingRatio ] )
+MOAIParticleState	setInitScript ( MOAIParticleState self [, MOAIParticleScript script ] )
+MOAIParticleState	resetMassData ( MOAIBox2DBody self )
+MOAIParticleState	setNext ( MOAIParticleState self [, MOAIParticleState next ] )
+MOAIParticleState	setPlugin ( MOAIParticleState self [, MOAIParticlePlugin plugin ] )
+MOAIParticleState	setRenderScript ( MOAIParticleState self [, MOAIParticleScript script ] )
+MOAIParticleState	setTerm ( MOAIParticleState self, number minTerm [, number maxTerm ] )
+
+_G	MOAISim	 {}
+MOAISim	clearLoopFlags ( [ number mask ] )
+MOAISim	clearRenderStack ()
+MOAISim	crash ()
+MOAISim	enterFullscreenMode ()
+MOAISim	exitFullscreenMode ()
+MOAISim	forceGarbageCollection ()
+MOAISim	framesToTime ( number frames )
+MOAISim	getDeviceTime ()
+MOAISim	getElapsedFrames ()
+MOAISim	getElapsedTime ()
+MOAISim	getHistogram ()
+MOAISim	getLoopFlags ()
+MOAISim	getLuaObjectCount ()
+MOAISim	getMemoryUsage ()
+MOAISim	getPerformanceDrawCount ( MOAIFrameBuffer self )
+MOAISim	getStep ()
+MOAISim	openWindow ( string title, number width, number height )
+MOAISim	pauseTimer ( boolean pause )
+MOAISim	popRenderPass ()
+MOAISim	pushRenderPass ( MOAIRenderable renderable )
+MOAISim	removeRenderPass ( MOAIRenderable renderable )
+MOAISim	reportHistogram ()
+MOAISim	reportLeaks ( bool clearAfter )
+MOAISim	setBoostThreshold ( [ number boostThreshold ] )
+MOAISim	setCpuBudget ( number budget )
+MOAISim	setHistogramEnabled ( [ bool enable ] )
+MOAISim	setLeakTrackingEnabled ( [ bool enable ] )
+MOAISim	setLongDelayThreshold ( [ number longDelayThreshold ] )
+MOAISim	setLoopFlags ( [ number flags ] )
+MOAISim	setLuaAllocLogEnabled ( [ boolean enable ] )
+MOAISim	setStep ( number step )
+MOAISim	setStepMultiplier ( number count )
+MOAISim	setTimerError ( number timerError )
+MOAISim	setTraceback ( callback )
+MOAISim	timeToFrames ( number time )
+
+_G	MOAIRenderMgr	 {}
+MOAIRenderMgr	clearRenderStack ()
+MOAIRenderMgr	getPerformanceDrawCount ( MOAIFrameBuffer self )
+MOAIRenderMgr	getRenderTable ( MOAIFrameBuffer self )
+MOAIRenderMgr	grabNextFrame ( MOAIFrameBuffer self, MOAIImage image, callback )
+MOAIRenderMgr	popRenderPass ()
+MOAIRenderMgr	pushRenderPass ( MOAIRenderable renderable )
+MOAIRenderMgr	removeRenderPass ( MOAIRenderable renderable )
+MOAIRenderMgr	setRenderTable ( MOAIFrameBuffer self, table renderTable )
+
+_G	MOAIGrid	 {}
+MOAIGrid	clearTileFlags ( MOAIGrid self, number xTile, number yTile, number mask )
+MOAIGrid	fillCircle ( number x, number y, number r, number steps )
+MOAIGrid	getTile ( MOAIGrid self, number xTile, number yTile )
+MOAIGrid	getTileFlags ( MOAIGrid self, number xTile, number yTile, number mask )
+MOAIGrid	setRow ( MOAIGrid self, number row, ... )
+MOAIGrid	setTile ( MOAIGrid self, number xTile, number yTile, number value )
+MOAIGrid	setTileFlags ( MOAIGrid self, number xTile, number yTile, number mask )
+MOAIGrid	streamTilesIn ( MOAIGrid self, MOAIStream stream )
+MOAIGrid	streamTilesOut ( MOAIGrid self, MOAIStream stream )
+MOAIGrid	toggleTileFlags ( MOAIGrid self, number xTile, number yTile, number mask )
+
+_G	MOAIShader	 {}
+MOAIShader	clearUniform ( MOAIShader self, number idx )
+MOAIShader	declareUniform ( MOAIShader self, number idx, string name [, number type ] )
+MOAIShader	declareUniformFloat ( MOAIShader self, number idx, string name [, number value ] )
+MOAIShader	declareUniformInt ( MOAIShader self, number idx, string name [, number value ] )
+MOAIShader	declareUniformSampler ( MOAIShader self, number idx, string name [, number textureUnit ] )
+MOAIShader	requestPurchase ( string sku [, string payload ] )
+MOAIShader	reserveUniforms ( MOAIShader self [, number nUniforms ] )
+MOAIShader	setVertexAttribute ( MOAIShader self, number index, string name )
+
+_G	MOAIDataBufferStream	 {}
+MOAIDataBufferStream	addChain ( MOAIBox2DBody self, table verts [, boolean closeChain ] )
+MOAIDataBufferStream	openURL ( string url )
+
+_G	MOAIFileStream	 {}
+MOAIFileStream	addChain ( MOAIBox2DBody self, table verts [, boolean closeChain ] )
+MOAIFileStream	openURL ( string url )
+
+_G	MOAIHashWriter	 {}
+MOAIHashWriter	addChain ( MOAIBox2DBody self, table verts [, boolean closeChain ] )
+MOAIHashWriter	openAdler32 ( MOAIStreamWriter self [, MOAIStream target ] )
+MOAIHashWriter	openCRC32 ( MOAIStreamWriter self [, MOAIStream target ] )
+MOAIHashWriter	openCRC32b ( MOAIStreamWriter self [, MOAIStream target ] )
+MOAIHashWriter	openMD5 ( MOAIStreamWriter self [, MOAIStream target ] )
+MOAIHashWriter	openSHA1 ( MOAIStreamWriter self [, MOAIStream target ] )
+MOAIHashWriter	openSHA224 ( MOAIStreamWriter self [, MOAIStream target ] )
+MOAIHashWriter	openSHA256 ( MOAIStreamWriter self [, MOAIStream target ] )
+MOAIHashWriter	openSHA384 ( MOAIStreamWriter self [, MOAIStream target ] )
+MOAIHashWriter	openSHA512 ( MOAIStreamWriter self [, MOAIStream target ] )
+MOAIHashWriter	openWhirlpool ( MOAIStreamWriter self [, MOAIStream target ] )
+
+_G	MOAIMemStream	 {}
+MOAIMemStream	addChain ( MOAIBox2DBody self, table verts [, boolean closeChain ] )
+MOAIMemStream	openURL ( string url )
+
+_G	MOAIStreamReader	 {}
+MOAIStreamReader	addChain ( MOAIBox2DBody self, table verts [, boolean closeChain ] )
+MOAIStreamReader	openBase64 ( MOAIStreamReader self, MOAIStream target )
+MOAIStreamReader	openDeflate ( MOAIStreamReader self, MOAIStream target )
+
+_G	MOAIStreamWriter	 {}
+MOAIStreamWriter	addChain ( MOAIBox2DBody self, table verts [, boolean closeChain ] )
+MOAIStreamWriter	openBase64 ( MOAIStreamReader self, MOAIStream target )
+MOAIStreamWriter	openDeflate ( MOAIStreamReader self, MOAIStream target )
+
+_G	MOAILogMgr	 {}
+MOAILogMgr	closeFile ()
+MOAILogMgr	isDebugBuild ()
+MOAILogMgr	showDialog ( string title, string message, string positive, string neutral, string negative, bool cancelable [, callback ] )
+MOAILogMgr	openFile ( string filename )
+MOAILogMgr	registerLogMessage ( number messageID [, string formatString, number level ] )
+MOAILogMgr	setLogLevel ( number logLevel )
+MOAILogMgr	setTypeCheckLuaParams ( [ boolean check ] )
+
+_G	MOAICpArbiter	 {}
+MOAICpArbiter	countContacts ( MOAICpArbiter self )
+MOAICpArbiter	getContactDepth ( MOAICpArbiter self, number id )
+MOAICpArbiter	getContactNormal ( MOAIBox2DArbiter self )
+MOAICpArbiter	getContactPoint ( MOAICpArbiter self, number id )
+MOAICpArbiter	getTotalImpulse ( MOAICpArbiter self )
+MOAICpArbiter	getTotalImpulseWithFriction ( MOAICpArbiter self )
+MOAICpArbiter	isFirstContact ( MOAICpArbiter self )
+
+_G	MOAIVertexFormat	 {}
+MOAIVertexFormat	declareAttribute ( MOAIVertexFormat self, number index, number type, number size [, boolean normalized ] )
+MOAIVertexFormat	declareColor ( MOAIVertexFormat self, number type )
+MOAIVertexFormat	declareCoord ( MOAIVertexFormat self, number type, number size )
+MOAIVertexFormat	declareNormal ( MOAIVertexFormat self, number type )
+MOAIVertexFormat	declareUV ( MOAIVertexFormat self, number type, number size )
+
+_G	MOAIJsonParser	 {}
+MOAIJsonParser	decode ( string input )
+MOAIJsonParser	encode ( table input )
+
+_G	MOAIBox2DFixture	 {}
+MOAIBox2DFixture	destroy ( MOAIBox2DBody self )
+MOAIBox2DFixture	getBody ( MOAIBox2DFixture self )
+MOAIBox2DFixture	getFilter ( MOAIBox2DFixture self )
+MOAIBox2DFixture	setCollisionHandler ( MOAIBox2DFixture self, handler [, number phaseMask, number categoryMask ] )
+MOAIBox2DFixture	setDensity ( MOAIBox2DFixture self, number density )
+MOAIBox2DFixture	setFilter ( MOAIBox2DFixture self, number categoryBits [, number maskBits, number groupIndex ] )
+MOAIBox2DFixture	setFriction ( MOAIBox2DFixture self, number friction )
+MOAIBox2DFixture	setRestitution ( MOAIBox2DFixture self, number restitution )
+MOAIBox2DFixture	setSensor ( MOAIBox2DFixture self [, boolean isSensor ] )
+
+_G	MOAIBox2DJoint	 {}
+MOAIBox2DJoint	destroy ( MOAIBox2DBody self )
+MOAIBox2DJoint	getAnchorA ( MOAIBox2DJoint self )
+MOAIBox2DJoint	getAnchorB ( MOAIBox2DJoint self )
+MOAIBox2DJoint	getBodyA ( MOAIBox2DJoint self )
+MOAIBox2DJoint	getBodyB ( MOAIBox2DJoint self )
+MOAIBox2DJoint	getReactionForce ( MOAIBox2DJoint self )
+MOAIBox2DJoint	getReactionTorque ( MOAIBox2DJoint self )
+
+_G	MOAIButtonSensor	 {}
+MOAIButtonSensor	down ( MOAIButtonSensor self )
+MOAIButtonSensor	isDown ( MOAIButtonSensor self )
+MOAIButtonSensor	isUp ( MOAIButtonSensor self )
+MOAIButtonSensor	setCallback ( MOAIButtonSensor self [, callback ] )
+MOAIButtonSensor	checkBillingSupported ()
+
+_G	MOAITouchSensor	 {}
+MOAITouchSensor	down ( MOAIButtonSensor self )
+MOAITouchSensor	getActiveTouches ( MOAITouchSensor self )
+MOAITouchSensor	getTouch ( MOAITouchSensor self, number id )
+MOAITouchSensor	hasTouches ( MOAITouchSensor self )
+MOAITouchSensor	isDown ( MOAIButtonSensor self )
+MOAITouchSensor	setAcceptCancel ( MOAITouchSensor self, boolean accept )
+MOAITouchSensor	setCallback ( MOAIButtonSensor self [, callback ] )
+MOAITouchSensor	setTapMargin ( MOAITouchSensor self, number margin )
+MOAITouchSensor	setTapTime ( MOAITouchSensor self, number time )
+MOAITouchSensor	checkBillingSupported ()
+
+_G	MOAIDraw	 {}
+MOAIDraw	drawBoxOutline ( number x0, number y0, number z0, number x1, number y1, number z1 )
+MOAIDraw	drawCircle ( number x, number y, number r, number steps )
+MOAIDraw	drawEllipse ( number x, number y, number xRad, number yRad, number steps )
+MOAIDraw	drawLine ( ... )
+MOAIDraw	drawPoints ( ... )
+MOAIDraw	drawRay ( number x, number y, number dx, number dy )
+MOAIDraw	drawRect ( number x0, number y0, number x1, number y1 )
+MOAIDraw	fillCircle ( number x, number y, number r, number steps )
+MOAIDraw	fillEllipse ( number x, number y, number xRad, number yRad, number steps )
+MOAIDraw	fillFan ( ... )
+MOAIDraw	fillRect ( number x0, number y0, number x1, number y1 )
+
+_G	MOAISerializer	 {}
+MOAISerializer	exportToFile ( MOAISerializer self, string filename )
+MOAISerializer	exportToString ( MOAISerializer self )
+MOAISerializer	serialize ( MOAISerializer self, table data )
+MOAISerializer	serializeToFile ( string filename, table data )
+MOAISerializer	serializeToString ( table data )
+
+_G	MOAIFacebookAndroid	 {}
+MOAIFacebookAndroid	extendToken ()
+MOAIFacebookAndroid	getExpirationDate ( nil )
+MOAIFacebookAndroid	getToken ()
+MOAIFacebookAndroid	graphRequest ( string path )
+MOAIFacebookAndroid	init ( string appId )
+MOAIFacebookAndroid	login ( [ table permissions ] )
+MOAIFacebookAndroid	logout ()
+MOAIFacebookAndroid	postToFeed ( string link, string picture, string name, string caption, string description, string message )
+MOAIFacebookAndroid	sendRequest ( [ string message ] )
+MOAIFacebookAndroid	sessionValid ()
+MOAIFacebookAndroid	setExpirationDate ( string expirationDate )
+MOAIFacebookAndroid	setToken ( string token )
+
+_G	MOAIFacebookIOS	 {}
+MOAIFacebookIOS	extendToken ()
+MOAIFacebookIOS	getExpirationDate ( nil )
+MOAIFacebookIOS	getToken ()
+MOAIFacebookIOS	graphRequest ( string path )
+MOAIFacebookIOS	init ( string appId )
+MOAIFacebookIOS	login ( [ table permissions ] )
+MOAIFacebookIOS	logout ()
+MOAIFacebookIOS	postToFeed ( string link, string picture, string name, string caption, string description, string message )
+MOAIFacebookIOS	sendRequest ( [ string message ] )
+MOAIFacebookIOS	sessionValid ()
+MOAIFacebookIOS	setExpirationDate ( string expirationDate )
+MOAIFacebookIOS	setToken ( string token )
+
+_G	MOAIPathFinder	 {}
+MOAIPathFinder	findPath ( MOAIPathFinder self [, number iterations ] )
+MOAIPathFinder	getGraph ( MOAIPathFinder self )
+MOAIPathFinder	getPathEntry ( MOAIPathFinder self, number index )
+MOAIPathFinder	getPathSize ( MOAIPathFinder self )
+MOAIPathFinder	init ( string appId )
+MOAIPathFinder	reserveTerrainWeights ( MOAIPathFinder self [, number size ] )
+MOAIPathFinder	setFlags ( MOAIFont self [, number flags ] )
+MOAIPathFinder	setGraph ( MOAIPathFinder self [, MOAIGrid grid ] )
+MOAIPathFinder	setHeuristic ( MOAIPathFinder self [, number heuristic ] )
+MOAIPathFinder	setTerrainDeck ( MOAIPathFinder self [, MOAIPathTerrainDeck terrainDeck ] )
+MOAIPathFinder	setTerrainMask ( MOAIPathFinder self [, number mask ] )
+MOAIPathFinder	setTerrainWeight ( MOAIPathFinder self, number index [, number deltaScale, number penaltyScale ] )
+MOAIPathFinder	setWeight ( MOAIPathFinder self [, number gWeight, number hWeight ] )
+
+_G	MOAIStream	 {}
+MOAIStream	flush ( MOAIStream self )
+MOAIStream	getCursor ( MOAIStream self )
+MOAIStream	getLength ( MOAIAnim self )
+MOAIStream	setThreadInfoEnabled ( [ boolean enable ] )
+MOAIStream	read16 ( MOAIStream self )
+MOAIStream	read32 ( MOAIStream self )
+MOAIStream	read8 ( MOAIStream self )
+MOAIStream	readDouble ( MOAIStream self )
+MOAIStream	readFloat ( MOAIStream self )
+MOAIStream	readFormat ( MOAIStream self, string format )
+MOAIStream	readU16 ( MOAIStream self )
+MOAIStream	readU32 ( MOAIStream self )
+MOAIStream	readU8 ( MOAIStream self )
+MOAIStream	seekColor ( MOAIColor self, number rGoal, number gGoal, number bGoal, number aGoal, number length [, number mode ] )
+MOAIStream	writePNG ( MOAIImage self, string filename )
+MOAIStream	write16 ( MOAIStream self, number value )
+MOAIStream	write32 ( MOAIStream self, number value )
+MOAIStream	write8 ( MOAIStream self, number value )
+MOAIStream	writeDouble ( MOAIStream self, number value )
+MOAIStream	writeFloat ( MOAIVertexBuffer self [, number f ] )
+MOAIStream	writeFormat ( MOAIStream self, string format, ... )
+MOAIStream	writeStream ( MOAIStream self, MOAIStream stream [, number size ] )
+MOAIStream	writeU16 ( MOAIStream self, number value )
+MOAIStream	writeU32 ( MOAIStream self, number value )
+MOAIStream	writeU8 ( MOAIStream self, number value )
+
+_G	MOAICrittercismIOS	 {}
+MOAICrittercismIOS	forceException ()
+MOAICrittercismIOS	init ( string appId )
+MOAICrittercismIOS	leaveBreadcrumb ( string breadcrumb )
+MOAICrittercismIOS	setUser ( string identifier )
+
+_G	MOAIEnvironment	 {}
+MOAIEnvironment	generateGUID ()
+MOAIEnvironment	getMACAddress ()
+MOAIEnvironment	setValue ( string key [, variant value ] )
+
+_G	MOAIGfxResource	 {}
+MOAIGfxResource	getAge ( MOAIGfxResource self )
+MOAIGfxResource	softRelease ( MOAIGfxResource self [, int age ] )
+
+_G	MOAINotificationsAndroid	 {}
+MOAINotificationsAndroid	getAppIconBadgeNumber ()
+MOAINotificationsAndroid	localNotificationInSeconds ( string message, integer seconds )
+MOAINotificationsAndroid	registerForRemoteNotifications ( string sender )
+MOAINotificationsAndroid	setAppIconBadgeNumber ()
+MOAINotificationsAndroid	unregisterForRemoteNotifications ()
+
+_G	MOAINotificationsIOS	 {}
+MOAINotificationsIOS	getAppIconBadgeNumber ()
+MOAINotificationsIOS	registerForRemoteNotifications ( string sender )
+MOAINotificationsIOS	setAppIconBadgeNumber ()
+MOAINotificationsIOS	unregisterForRemoteNotifications ()
+
+_G	MOAICpConstraint	 {}
+MOAICpConstraint	getBiasCoefficient ()
+MOAICpConstraint	getMaxBias ( MOAICpConstraint self )
+MOAICpConstraint	getMaxForce ( MOAIBox2DFrictionJoint self )
+MOAICpConstraint	newDampedRotarySpring ( MOAICpShape first, MOAICpShape second, number restAngle, number stiffness, number damping )
+MOAICpConstraint	newDampedSpring ( MOAICpShape first, MOAICpShape second, number x1, number y1, number x2, number y2, number restAngle, number stiffness, number damping )
+MOAICpConstraint	newGearJoint ( MOAICpShape first, MOAICpShape second, number phase, number ratio )
+MOAICpConstraint	newGrooveJoint ( MOAICpShape first, MOAICpShape second, number gx1, number gy1, number gx2, number gy2, number ax, number ay )
+MOAICpConstraint	newPinJoint ( MOAICpShape first, MOAICpShape second, number ax1, number ay1, number ax2, number ay2 )
+MOAICpConstraint	newPivotJoint ( MOAICpShape first, MOAICpShape second, number x, number y [, number ax, number ay ] )
+MOAICpConstraint	newRatchetJoint ( MOAICpShape first, MOAICpShape second, number phase, number ratchet )
+MOAICpConstraint	newRotaryLimitJoint ( MOAICpShape first, MOAICpShape second, number min, number max )
+MOAICpConstraint	newSimpleMotor ( MOAICpShape first, MOAICpShape second, number rate )
+MOAICpConstraint	newSlideJoint ( MOAICpShape first, MOAICpShape second, number ax1, number ay1, number ax2, number ay2, number min, number max )
+MOAICpConstraint	setBiasCoefficient ( number bias )
+MOAICpConstraint	setMaxBias ( MOAICpConstraint self, number bias )
+MOAICpConstraint	setMaxForce ( MOAIBox2DFrictionJoint self [, number maxForce ] )
+
+_G	MOAICp	 {}
+MOAICp	getBiasCoefficient ()
+MOAICp	getCollisionSlop ()
+MOAICp	getContactPersistence ()
+MOAICp	setBiasCoefficient ( number bias )
+MOAICp	setCollisionSlop ( number slop )
+MOAICp	setContactPersistence ( number persistance )
+
+_G	MOAIProp	 {}
+MOAIProp	getBounds ( MOAIProp self )
+MOAIProp	getDims ( MOAIProp self )
+MOAIProp	getGrid ( MOAIProp self )
+MOAIProp	getIndex ( MOAIProp self )
+MOAIProp	getPriority ( MOAIProp self )
+MOAIProp	getWorldBounds ( MOAIProp self )
+MOAIProp	inside ( MOAICpShape self, number x, number y )
+MOAIProp	setBillboard ( MOAIProp self [, boolean billboard ] )
+MOAIProp	setBlendEquation ( MOAIProp self )
+MOAIProp	setBlendMode ( MOAIProp self )
+MOAIProp	setBounds ( MOAIBoundsDeck self, number idx, number xMin, number yMin, number zMin, number xMax, number yMax, number zMax )
+MOAIProp	setCullMode ( MOAIProp self [, number cullMode ] )
+MOAIProp	setDeck ( MOAIGridDeck2D self [, MOAIDeck deck ] )
+MOAIProp	setDepthMask ( MOAIProp self [, boolean depthMask ] )
+MOAIProp	setDepthTest ( MOAIProp self [, number depthFunc ] )
+MOAIProp	setExpandForSort ( MOAIProp self, boolean expandForSort )
+MOAIProp	setGrid ( MOAIGridDeck2D self [, MOAIGrid grid ] )
+MOAIProp	setGridScale ( MOAIProp self [, number xScale, number yScale ] )
+MOAIProp	setIndex ( MOAIBoundsDeck self, number idx, number boundsID )
+MOAIProp	setParent ( MOAICameraAnchor2D self [, MOAITransformBase parent ] )
+MOAIProp	setPriority ( MOAIProp self [, number priority ] )
+MOAIProp	setRemapper ( MOAIGridDeck2D self [, MOAIDeckRemapper remapper ] )
+MOAIProp	setScissorRect ( MOAIProp self [, MOAIScissorRect scissorRect ] )
+MOAIProp	setShader ( MOAIDeck self, MOAIShader shader )
+MOAIProp	setTexture ( MOAIDeck self, variant texture [, number transform ] )
+MOAIProp	setUVTransform ( MOAIProp self [, MOAITransformBase transform ] )
+MOAIProp	setVisible ( MOAIProp self [, boolean visible ] )
+
+_G	MOAITextStyle	 {}
+MOAITextStyle	getColor32 ( MOAIImage self, number x, number y )
+MOAITextStyle	getFont ( MOAITextStyle self )
+MOAITextStyle	getTargetScale ( MOAICameraFitter2D self )
+MOAITextStyle	getSize ( MOAIDataBuffer self )
+MOAITextStyle	setColor ( MOAIColor self, number r, number g, number b [, number a ] )
+MOAITextStyle	setFont ( MOAITextBox self, MOAIFont font )
+MOAITextStyle	setScale ( MOAITextStyle self [, number scale ] )
+MOAITextStyle	setSize ( MOAIGridSpace self, number width, number height [, number cellWidth, number cellHeight, number xOff, number yOff, number tileWidth, number tileHeight ] )
+
+_G	MOAIBox2DArbiter	 {}
+MOAIBox2DArbiter	getContactNormal ( MOAIBox2DArbiter self )
+MOAIBox2DArbiter	getNormalImpulse ( MOAIBox2DArbiter self )
+MOAIBox2DArbiter	getTangentImpulse ( MOAIBox2DArbiter self )
+MOAIBox2DArbiter	setContactEnabled ( MOAIBox2DArbiter self )
+
+_G	MOAIBox2DDistanceJoint	 {}
+MOAIBox2DDistanceJoint	getDampingRatio ( MOAIBox2DDistanceJoint self )
+MOAIBox2DDistanceJoint	getFrequency ( MOAIBox2DDistanceJoint self )
+MOAIBox2DDistanceJoint	getLength ( MOAIAnim self )
+MOAIBox2DDistanceJoint	setDampingRatio ( MOAIBox2DDistanceJoint self [, number dampingRatio ] )
+MOAIBox2DDistanceJoint	setFrequency ( MOAIBox2DDistanceJoint self [, number frequency ] )
+MOAIBox2DDistanceJoint	setLength ( MOAIBox2DDistanceJoint self [, number length ] )
+
+_G	MOAIBox2DMouseJoint	 {}
+MOAIBox2DMouseJoint	getDampingRatio ( MOAIBox2DDistanceJoint self )
+MOAIBox2DMouseJoint	getFrequency ( MOAIBox2DDistanceJoint self )
+MOAIBox2DMouseJoint	getMaxForce ( MOAIBox2DFrictionJoint self )
+MOAIBox2DMouseJoint	getTarget ( MOAIBox2DMouseJoint self )
+MOAIBox2DMouseJoint	setDampingRatio ( MOAIBox2DDistanceJoint self [, number dampingRatio ] )
+MOAIBox2DMouseJoint	setFrequency ( MOAIBox2DDistanceJoint self [, number frequency ] )
+MOAIBox2DMouseJoint	setMaxForce ( MOAIBox2DFrictionJoint self [, number maxForce ] )
+MOAIBox2DMouseJoint	setTarget ( MOAIBox2DMouseJoint self [, number x, number y ] )
+
+_G	MOAIUntzSampleBuffer	 {}
+MOAIUntzSampleBuffer	getData ( MOAIUntzSampleBuffer self )
+MOAIUntzSampleBuffer	getInfo ( MOAIUntzSampleBuffer self )
+MOAIUntzSampleBuffer	requestPurchase ( string sku [, string payload ] )
+MOAIUntzSampleBuffer	prepareBuffer
+MOAIUntzSampleBuffer	setData ( MOAIUntzSampleBuffer self, table array, number index )
+MOAIUntzSampleBuffer	setRawData
+
+_G	MOAIWheelSensor	 {}
+MOAIWheelSensor	getDelta ( MOAIWheelSensor self )
+MOAIWheelSensor	getValueAtTime ( MOAIAnimCurve self, number time )
+MOAIWheelSensor	setCallback ( MOAIButtonSensor self [, callback ] )
+
+_G	MOAIAppIOS	 {}
+MOAIAppIOS	getDirectoryInDomain ( string domain )
+MOAIAppIOS	getUTCTime ()
+MOAIAppIOS	sendMail ( string recipient, string subject, string message )
+MOAIAppIOS	_takeCamera ( callback, NSUInteger input, int if, int if, int if, int if )
+
+_G	MOAICamera	 {}
+MOAICamera	getFarPlane ( MOAICamera self )
+MOAICamera	getFieldOfView ( MOAICamera self )
+MOAICamera	getFocalLength ( MOAICamera self, number width )
+MOAICamera	getNearPlane ( MOAICamera self )
+MOAICamera	setFarPlane ( MOAICamera self [, number far ] )
+MOAICamera	setFieldOfView ( MOAICamera self [, number hfow ] )
+MOAICamera	setNearPlane ( MOAICamera self [, number near ] )
+MOAICamera	setOrtho ( MOAICamera self [, boolean ortho ] )
+
+_G	MOAICamera2D	 {}
+MOAICamera2D	getFarPlane ( MOAICamera self )
+MOAICamera2D	getNearPlane ( MOAICamera self )
+MOAICamera2D	setFarPlane ( MOAICamera self [, number far ] )
+MOAICamera2D	setNearPlane ( MOAICamera self [, number near ] )
+
+_G	MOAIFont	 {}
+MOAIFont	getFilename ( MOAIFont self )
+MOAIFont	getFlags ( MOAIFont self )
+MOAIFont	getImage ( MOAIFont self )
+MOAIFont	requestPurchase ( string sku [, string payload ] )
+MOAIFont	loadFromBMFont ( MOAIFont self, string filename )
+MOAIFont	loadFromTTF ( MOAIFont self, string filename, string charcodes, number points [, number dpi ] )
+MOAIFont	preloadGlyphs ( MOAIFont self, string charCodes, number points [, number dpi ] )
+MOAIFont	rebuildKerningTables ( MOAIFont self )
+MOAIFont	setCache ( MOAIFont self [, MOAIGlyphCacheBase cache ] )
+MOAIFont	setDefaultSize ( MOAIFont self, number points [, number dpi ] )
+MOAIFont	setFlags ( MOAIFont self [, number flags ] )
+MOAIFont	setImage ( MOAIFont self, MOAIImage image )
+MOAIFont	setReader ( MOAIFont self [, MOAIFontReader reader ] )
+
+_G	MOAIUntzSound	 {}
+MOAIUntzSound	getFilename ( MOAIFont self )
+MOAIUntzSound	getLength ( MOAIAnim self )
+MOAIUntzSound	getPosition ( MOAIBox2DBody self )
+MOAIUntzSound	getVolume ( MOAIFmodExChannel self )
+MOAIUntzSound	isLooping ( MOAIUntzSound self )
+MOAIUntzSound	isPaused ( MOAIUntzSound self )
+MOAIUntzSound	isPlaying ( MOAIFmodExChannel self )
+MOAIUntzSound	requestPurchase ( string sku [, string payload ] )
+MOAIUntzSound	moveVolume ( MOAIFmodExChannel self, number target, number delay, number mode )
+MOAIUntzSound	pause ( MOAIAction self [, bool pause ] )
+MOAIUntzSound	play ( MOAIFmodExChannel self, MOAIFmodExSound sound, boolean loop )
+MOAIUntzSound	seekVolume ( MOAIFmodExChannel self, number target, number delay, number mode )
+MOAIUntzSound	setLooping ( MOAIFmodExChannel self, boolean looping )
+MOAIUntzSound	setLoopPoints ( MOAIUntzSound self, double startTime, double endTime )
+MOAIUntzSound	setPosition ( MOAIUntzSound self [, boolean position ] )
+MOAIUntzSound	setVolume ( MOAIFmodExChannel self, number volume )
+MOAIUntzSound	stop ( MOAIAction self )
+
+_G	MOAIGfxDevice	 {}
+MOAIGfxDevice	getFrameBuffer
+MOAIGfxDevice	getMaxTextureUnits ()
+MOAIGfxDevice	getViewSize ()
+MOAIGfxDevice	isProgrammable ()
+MOAIGfxDevice	setPenColor ( number r, number g, number b [, number a ] )
+MOAIGfxDevice	setPenWidth ( number width )
+MOAIGfxDevice	setPointSize ( number size )
+
+_G	MOAIProp2D	 {}
+MOAIProp2D	getGrid ( MOAIProp self )
+MOAIProp2D	getIndex ( MOAIProp self )
+MOAIProp2D	getPriority ( MOAIProp self )
+MOAIProp2D	inside ( MOAICpShape self, number x, number y )
+MOAIProp2D	setBlendMode ( MOAIProp self )
+MOAIProp2D	setCullMode ( MOAIProp self [, number cullMode ] )
+MOAIProp2D	setDeck ( MOAIGridDeck2D self [, MOAIDeck deck ] )
+MOAIProp2D	setDepthMask ( MOAIProp self [, boolean depthMask ] )
+MOAIProp2D	setDepthTest ( MOAIProp self [, number depthFunc ] )
+MOAIProp2D	setExpandForSort ( MOAIProp self, boolean expandForSort )
+MOAIProp2D	setFrameBuffer ( MOAILayer2D self, MOAIFrameBufferTexture frameBuffer )
+MOAIProp2D	setGrid ( MOAIGridDeck2D self [, MOAIGrid grid ] )
+MOAIProp2D	setGridScale ( MOAIProp self [, number xScale, number yScale ] )
+MOAIProp2D	setIndex ( MOAIBoundsDeck self, number idx, number boundsID )
+MOAIProp2D	setParent ( MOAICameraAnchor2D self [, MOAITransformBase parent ] )
+MOAIProp2D	setPriority ( MOAIProp self [, number priority ] )
+MOAIProp2D	setRemapper ( MOAIGridDeck2D self [, MOAIDeckRemapper remapper ] )
+MOAIProp2D	setShader ( MOAIDeck self, MOAIShader shader )
+MOAIProp2D	setTexture ( MOAIDeck self, variant texture [, number transform ] )
+MOAIProp2D	setUVTransform ( MOAIProp self [, MOAITransformBase transform ] )
+MOAIProp2D	setVisible ( MOAIProp self [, boolean visible ] )
+
+_G	MOAIBox2DPulleyJoint	 {}
+MOAIBox2DPulleyJoint	getGroundAnchorA ( MOAIBox2DPulleyJoint self )
+MOAIBox2DPulleyJoint	getGroundAnchorB ( MOAIBox2DPulleyJoint self )
+MOAIBox2DPulleyJoint	getLength1 ( MOAIBox2DPulleyJoint self )
+MOAIBox2DPulleyJoint	getLength2 ( MOAIBox2DPulleyJoint self )
+MOAIBox2DPulleyJoint	getRatio ( MOAIBox2DGearJoint self )
+
+_G	MOAICompassSensor	 {}
+MOAICompassSensor	getHeading ( MOAICompassSensor self )
+MOAICompassSensor	setCallback ( MOAIButtonSensor self [, callback ] )
+
+_G	MOAIBox2DGearJoint	 {}
+MOAIBox2DGearJoint	getJointA ( MOAIBox2DGearJoint self )
+MOAIBox2DGearJoint	getJointB ( MOAIBox2DGearJoint self )
+MOAIBox2DGearJoint	getRatio ( MOAIBox2DGearJoint self )
+MOAIBox2DGearJoint	setRatio ( MOAIBox2DGearJoint self [, number ratio ] )
+
+_G	MOAIBox2DRevoluteJoint	 {}
+MOAIBox2DRevoluteJoint	getJointAngle ( MOAIBox2DRevoluteJoint self )
+MOAIBox2DRevoluteJoint	getJointSpeed ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DRevoluteJoint	getLowerLimit ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DRevoluteJoint	getMotorSpeed ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DRevoluteJoint	getMotorTorque ( MOAIBox2DRevoluteJoint self )
+MOAIBox2DRevoluteJoint	getUpperLimit ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DRevoluteJoint	isLimitEnabled ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DRevoluteJoint	isMotorEnabled ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DRevoluteJoint	setLimit ( MOAIBox2DPrismaticJoint self [, number lower, number upper ] )
+MOAIBox2DRevoluteJoint	setLimitEnabled ( MOAIBox2DPrismaticJoint self [, boolean enabled ] )
+MOAIBox2DRevoluteJoint	setMaxMotorTorque ( MOAIBox2DRevoluteJoint self [, number maxMotorTorque ] )
+MOAIBox2DRevoluteJoint	setMotor ( MOAIBox2DPrismaticJoint self [, number speed, number maxForce, boolean forceEnable ] )
+MOAIBox2DRevoluteJoint	setMotorEnabled ( MOAIBox2DPrismaticJoint self [, boolean enabled ] )
+MOAIBox2DRevoluteJoint	setMotorSpeed ( MOAIBox2DPrismaticJoint self [, number motorSpeed ] )
+
+_G	MOAIBox2DPrismaticJoint	 {}
+MOAIBox2DPrismaticJoint	getJointSpeed ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DPrismaticJoint	getJointTranslation ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DPrismaticJoint	getLowerLimit ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DPrismaticJoint	getMotorForce ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DPrismaticJoint	getMotorSpeed ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DPrismaticJoint	getUpperLimit ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DPrismaticJoint	isLimitEnabled ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DPrismaticJoint	isMotorEnabled ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DPrismaticJoint	setLimit ( MOAIBox2DPrismaticJoint self [, number lower, number upper ] )
+MOAIBox2DPrismaticJoint	setLimitEnabled ( MOAIBox2DPrismaticJoint self [, boolean enabled ] )
+MOAIBox2DPrismaticJoint	setMaxMotorForce ( MOAIBox2DPrismaticJoint self [, number maxMotorForce ] )
+MOAIBox2DPrismaticJoint	setMotor ( MOAIBox2DPrismaticJoint self [, number speed, number maxForce, boolean forceEnable ] )
+MOAIBox2DPrismaticJoint	setMotorEnabled ( MOAIBox2DPrismaticJoint self [, boolean enabled ] )
+MOAIBox2DPrismaticJoint	setMotorSpeed ( MOAIBox2DPrismaticJoint self [, number motorSpeed ] )
+
+_G	MOAIBox2DWheelJoint	 {}
+MOAIBox2DWheelJoint	getJointSpeed ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DWheelJoint	getJointTranslation ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DWheelJoint	getMaxMotorTorque ( MOAIBox2DWheelJoint self )
+MOAIBox2DWheelJoint	getMotorSpeed ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DWheelJoint	getMotorTorque ( MOAIBox2DRevoluteJoint self )
+MOAIBox2DWheelJoint	getSpringDampingRatio ( MOAIBox2DWheelJoint self )
+MOAIBox2DWheelJoint	getSpringFrequencyHz ( MOAIBox2DWheelJoint self )
+MOAIBox2DWheelJoint	isMotorEnabled ( MOAIBox2DPrismaticJoint self )
+MOAIBox2DWheelJoint	setMaxMotorTorque ( MOAIBox2DRevoluteJoint self [, number maxMotorTorque ] )
+MOAIBox2DWheelJoint	setMotor ( MOAIBox2DPrismaticJoint self [, number speed, number maxForce, boolean forceEnable ] )
+MOAIBox2DWheelJoint	setMotorEnabled ( MOAIBox2DPrismaticJoint self [, boolean enabled ] )
+MOAIBox2DWheelJoint	setMotorSpeed ( MOAIBox2DPrismaticJoint self [, number motorSpeed ] )
+MOAIBox2DWheelJoint	setSpringDampingRatio ( MOAIBox2DWheelJoint self [, number dampingRatio ] )
+MOAIBox2DWheelJoint	setSpringFrequencyHz ( MOAIBox2DWheelJoint self [, number springFrequencyHz ] )
+
+_G	MOAIAnimCurveBase	 {}
+MOAIAnimCurveBase	getLength ( MOAIAnim self )
+MOAIAnimCurveBase	reserveKeys ( MOAIAnimCurveBase self, number nKeys )
+MOAIAnimCurveBase	setWrapMode ( MOAIAnimCurveBase self [, number mode ] )
+
+_G	MOAIMotionSensor	 {}
+MOAIMotionSensor	getLevel ( MOAIMotionSensor self )
+MOAIMotionSensor	setCallback ( MOAIButtonSensor self [, callback ] )
+
+_G	MOAIBox2DRopeJoint	 {}
+MOAIBox2DRopeJoint	getLimitState ( MOAIBox2DRopeJoint self )
+MOAIBox2DRopeJoint	getMaxLength ( MOAIBox2DRopeJoint self )
+MOAIBox2DRopeJoint	setMaxLength ( MOAIBox2DRopeJoint self, number maxLength )
+
+_G	MOAIPointerSensor	 {}
+MOAIPointerSensor	getLocalCenter ( MOAIBox2DBody self )
+MOAIPointerSensor	setCallback ( MOAIButtonSensor self [, callback ] )
+
+_G	MOAILocationSensor	 {}
+MOAILocationSensor	getLocation ( MOAILocationSensor self )
+MOAILocationSensor	setCallback ( MOAIButtonSensor self [, callback ] )
+
+_G	MOAIPathTerrainDeck	 {}
+MOAIPathTerrainDeck	getMask ( MOAIPathTerrainDeck self, number idx )
+MOAIPathTerrainDeck	getTerrainVec ( MOAIPathTerrainDeck self, number idx )
+MOAIPathTerrainDeck	reserveLinks ( MOAIAnim self, number nLinks )
+MOAIPathTerrainDeck	setMask ( MOAIPathTerrainDeck self, number idx, number mask )
+MOAIPathTerrainDeck	setTerrainVec ( MOAIPathTerrainDeck self, number idx, ... )
+
+_G	MOAIBox2DFrictionJoint	 {}
+MOAIBox2DFrictionJoint	getMaxForce ( MOAIBox2DFrictionJoint self )
+MOAIBox2DFrictionJoint	getMaxTorque ( MOAIBox2DFrictionJoint self )
+MOAIBox2DFrictionJoint	setMaxForce ( MOAIBox2DFrictionJoint self [, number maxForce ] )
+MOAIBox2DFrictionJoint	setMaxTorque ( MOAIBox2DFrictionJoint self [, number maxTorque ] )
+
+_G	MOAIFmodEx	 {}
+MOAIFmodEx	getMemoryStats ( [ boolean blocking ] )
+MOAIFmodEx	init ( string appId )
+
+_G	MOAIFrameBuffer	 {}
+MOAIFrameBuffer	getPerformanceDrawCount ( MOAIFrameBuffer self )
+MOAIFrameBuffer	getRenderTable ( MOAIFrameBuffer self )
+MOAIFrameBuffer	grabNextFrame ( MOAIFrameBuffer self, MOAIImage image, callback )
+MOAIFrameBuffer	setRenderTable ( MOAIFrameBuffer self, table renderTable )
+
+_G	MOAIHttpTaskBase	 {}
+MOAIHttpTaskBase	getProgress
+MOAIHttpTaskBase	getResponseCode ( MOAIHttpTask self )
+MOAIHttpTaskBase	getResponseHeader ( MOAIHttpTask self, string header )
+MOAIHttpTaskBase	getSize ( MOAIDataBuffer self )
+MOAIHttpTaskBase	getString ( MOAIDataBuffer self )
+MOAIHttpTaskBase	httpGet ( MOAIHttpTaskBase self, string url [, string useragent, boolean verbose, boolean blocking ] )
+MOAIHttpTaskBase	httpPost ( MOAIHttpTaskBase self, string url [, string data, string useragent, boolean verbose, boolean blocking ] )
+MOAIHttpTaskBase	isBusy ( MOAIAction self )
+MOAIHttpTaskBase	parseXml ( MOAIHttpTaskBase self )
+MOAIHttpTaskBase	performAsync ( MOAIHttpTaskBase self )
+MOAIHttpTaskBase	performSync ( MOAIHttpTaskBase self )
+MOAIHttpTaskBase	setBody ( MOAIHttpTaskBase self [, string data ] )
+MOAIHttpTaskBase	setCallback ( MOAIButtonSensor self [, callback ] )
+MOAIHttpTaskBase	setCookieDst ( MOAIHttpTaskBase self, string filename )
+MOAIHttpTaskBase	setCookieSrc ( MOAIHttpTaskBase self, string filename )
+MOAIHttpTaskBase	setFailOnError ( MOAIHttpTaskBase self, bool enable )
+MOAIHttpTaskBase	setFollowRedirects ( MOAIHttpTaskBase self, bool follow )
+MOAIHttpTaskBase	setHeader ( MOAIHttpTaskBase self, string key [, string value ] )
+MOAIHttpTaskBase	setStream ( MOAIHttpTaskBase self, MOAIStream stream )
+MOAIHttpTaskBase	setTimeout ( MOAIHttpTaskBase self, string url )
+MOAIHttpTaskBase	setUrl ( MOAIHttpTaskBase self, string url )
+MOAIHttpTaskBase	setUserAgent ( MOAIHttpTaskBase self [, string useragent ] )
+MOAIHttpTaskBase	setVerb ( MOAIHttpTaskBase self, number verb )
+MOAIHttpTaskBase	setVerbose ( MOAIHttpTaskBase self [, boolean verbose ] )
+
+_G	MOAIScissorRect	 {}
+MOAIScissorRect	getRect ( MOAIScissorRect self )
+MOAIScissorRect	setRect ( MOAICameraAnchor2D self, number xMin, number yMin, number xMax, number yMax )
+MOAIScissorRect	setScissorRect ( MOAIProp self [, MOAIScissorRect scissorRect ] )
+
+_G	MOAIActionMgr	 {}
+MOAIActionMgr	getRoot ()
+MOAIActionMgr	setProfilingEnabled ( [ boolean enable ] )
+MOAIActionMgr	setRoot ( [ MOAIAction root ] )
+MOAIActionMgr	setThreadInfoEnabled ( [ boolean enable ] )
+
+_G	MOAIUntzSystem	 {}
+MOAIUntzSystem	getSampleRate ()
+MOAIUntzSystem	getVolume ( MOAIFmodExChannel self )
+MOAIUntzSystem	initialize ( [ number sampleRate, number numFrames ] )
+MOAIUntzSystem	setSampleRate ( [ number sampleRate ] )
+MOAIUntzSystem	setVolume ( MOAIFmodExChannel self, number volume )
+
+_G	MOAIShaderMgr	 {}
+MOAIShaderMgr	getShader ( number shaderID )
+
+_G	MOAIParticlePlugin	 {}
+MOAIParticlePlugin	getSize ( MOAIDataBuffer self )
+
+_G	MOAITextureBase	 {}
+MOAITextureBase	getSize ( MOAIDataBuffer self )
+MOAITextureBase	release ( MOAIFmodExSound self )
+MOAITextureBase	setFilter ( MOAIBox2DFixture self, number categoryBits [, number maskBits, number groupIndex ] )
+MOAITextureBase	setWrapMode ( MOAIAnimCurveBase self [, number mode ] )
+
+_G	MOAIAppAndroid	 {}
+MOAIAppAndroid	getStatusBarHeight ()
+MOAIAppAndroid	getUTCTime ()
+MOAIAppAndroid	openURL ( string url )
+MOAIAppAndroid	share ( string prompt, string subject, string text )
+
+_G	MOAIKeyboardIOS	 {}
+MOAIKeyboardIOS	getText ()
+MOAIKeyboardIOS	showKeyboard ( [ string text, number type, number returnKey, boolean secure, number autocap, number appearance ] )
+
+_G	MOAIParticlePexPlugin	 {}
+MOAIParticlePexPlugin	getTextureName ( MOAIParticlePlugin self )
+MOAIParticlePexPlugin	requestPurchase ( string sku [, string payload ] )
+
+_G	MOAITimer	 {}
+MOAITimer	getTimeToSleep ( MOAIBox2DWorld self )
+MOAITimer	getTimesExecuted ( MOAITimer self )
+MOAITimer	setCurve ( MOAITextBox self, number curveID, MOAIAnimCurve curve )
+MOAITimer	setMode ( MOAITimer self, number mode )
+MOAITimer	setSpan ( MOAITimer self, number endTime )
+MOAITimer	setSpeed ( MOAITextBox self, number speed )
+MOAITimer	setTimeToSleep ( MOAIBox2DWorld self [, number timeToSleep ] )
+
+_G	MOAITapjoyAndroid	 {}
+MOAITapjoyAndroid	getUserId ()
+MOAITapjoyAndroid	init ( string appId )
+MOAITapjoyAndroid	initVideoAds ( [ number count ] )
+MOAITapjoyAndroid	showOffers ()
+
+_G	MOAITapjoyIOS	 {}
+MOAITapjoyIOS	getUserId ()
+MOAITapjoyIOS	init ( string appId )
+MOAITapjoyIOS	initVideoAds ( [ number count ] )
+MOAITapjoyIOS	setUserId ( string userId )
+MOAITapjoyIOS	showOffers ()
+
+_G	MOAIAnimCurve	 {}
+MOAIAnimCurve	getValueAtTime ( MOAIAnimCurve self, number time )
+MOAIAnimCurve	setKey ( MOAIAnimCurve self, number index, number time, number value [, number mode, number weight ] )
+
+_G	MOAIAnimCurveQuat	 {}
+MOAIAnimCurveQuat	getValueAtTime ( MOAIAnimCurve self, number time )
+MOAIAnimCurveQuat	setKey ( MOAIAnimCurve self, number index, number time, number value [, number mode, number weight ] )
+
+_G	MOAIAnimCurveVec	 {}
+MOAIAnimCurveVec	getValueAtTime ( MOAIAnimCurve self, number time )
+MOAIAnimCurveVec	setKey ( MOAIAnimCurve self, number index, number time, number value [, number mode, number weight ] )
+
+_G	MOAIJoystickSensor	 {}
+MOAIJoystickSensor	getVector ( MOAIJoystickSensor self )
+MOAIJoystickSensor	setCallback ( MOAIButtonSensor self [, callback ] )
+
+_G	MOAIFmodExChannel	 {}
+MOAIFmodExChannel	getVolume ( MOAIFmodExChannel self )
+MOAIFmodExChannel	isPlaying ( MOAIFmodExChannel self )
+MOAIFmodExChannel	moveVolume ( MOAIFmodExChannel self, number target, number delay, number mode )
+MOAIFmodExChannel	play ( MOAIFmodExChannel self, MOAIFmodExSound sound, boolean loop )
+MOAIFmodExChannel	seekVolume ( MOAIFmodExChannel self, number target, number delay, number mode )
+MOAIFmodExChannel	setLooping ( MOAIFmodExChannel self, boolean looping )
+MOAIFmodExChannel	setPaused ( MOAIFmodExChannel self, boolean paused )
+MOAIFmodExChannel	setVolume ( MOAIFmodExChannel self, number volume )
+MOAIFmodExChannel	stop ( MOAIAction self )
+
+_G	MOAITransformBase	 {}
+MOAITransformBase	getWorldDir ( MOAITransformBase self )
+MOAITransformBase	getWorldLoc ( MOAITransformBase self )
+MOAITransformBase	getWorldRot ( MOAITransformBase self )
+MOAITransformBase	getWorldScl ( MOAITransformBase self )
+
+_G	MOAIFrameBufferTexture	 {}
+MOAIFrameBufferTexture	init ( string appId )
+
+_G	MOAILayerBridge	 {}
+MOAILayerBridge	init ( string appId )
+
+_G	MOAICrittercismAndroid	 {}
+MOAICrittercismAndroid	init ( string appId )
+MOAICrittercismAndroid	leaveBreadcrumb ( string breadcrumb )
+MOAICrittercismAndroid	setUser ( string identifier )
+
+_G	MOAIMoviePlayerAndroid	 {}
+MOAIMoviePlayerAndroid	init ( string appId )
+MOAIMoviePlayerAndroid	pause ( MOAIAction self [, bool pause ] )
+MOAIMoviePlayerAndroid	play ( MOAIFmodExChannel self, MOAIFmodExSound sound, boolean loop )
+MOAIMoviePlayerAndroid	stop ( MOAIAction self )
+
+_G	MOAIMoviePlayerIOS	 {}
+MOAIMoviePlayerIOS	init ( string appId )
+MOAIMoviePlayerIOS	pause ( MOAIAction self [, bool pause ] )
+MOAIMoviePlayerIOS	play ( MOAIFmodExChannel self, MOAIFmodExSound sound, boolean loop )
+MOAIMoviePlayerIOS	stop ( MOAIAction self )
+
+_G	MOAIParticleForce	 {}
+MOAIParticleForce	initAttractor ( MOAIParticleForce self, number radius [, number magnitude ] )
+MOAIParticleForce	initBasin ( MOAIParticleForce self, number radius [, number magnitude ] )
+MOAIParticleForce	initLinear ( MOAIParticleForce self, number x [, number y ] )
+MOAIParticleForce	initRadial ( MOAIParticleForce self, number magnitude )
+MOAIParticleForce	setType ( MOAICpShape self, number type )
+
+_G	MOAIImageTexture	 {}
+MOAIImageTexture	invalidate ( MOAIImage self, number xMin, number yMin, number xMax, number yMax )
+
+_G	MOAIKeyboardSensor	 {}
+MOAIKeyboardSensor	keyDown ( MOAIKeyboardSensor self, string key )
+MOAIKeyboardSensor	keyIsDown ( MOAIKeyboardSensor self, string key )
+MOAIKeyboardSensor	keyIsUp ( MOAIKeyboardSensor self, string key )
+MOAIKeyboardSensor	keyUp ( MOAIKeyboardSensor self, string key )
+MOAIKeyboardSensor	setCallback ( MOAIButtonSensor self [, callback ] )
+
+_G	MOAITextBundle	 {}
+MOAITextBundle	requestPurchase ( string sku [, string payload ] )
+MOAITextBundle	lookup ( MOAITextBundle self, string key )
+
+_G	MOAITexture	 {}
+MOAITexture	requestPurchase ( string sku [, string payload ] )
+
+_G	MOAIFmodExSound	 {}
+MOAIFmodExSound	requestPurchase ( string sku [, string payload ] )
+MOAIFmodExSound	loadBGM ( MOAIFmodExSound self [, string filename, MOAIDataBuffer data ] )
+MOAIFmodExSound	loadSFX ( MOAIFmodExSound self [, string filename, MOAIDataBuffer data ] )
+MOAIFmodExSound	release ( MOAIFmodExSound self )
+
+_G	MOAIParser	 {}
+MOAIParser	loadFile ( MOAIParser self, string filename )
+MOAIParser	loadRules ( MOAIParser self, string filename )
+MOAIParser	loadString ( MOAIParser self, string filename )
+MOAIParser	setCallbacks ( MOAIParser self [, onStartNonterminal, onEndNonterminal, onTerminal ] )
+MOAIParser	traverse ( MOAIParser self )
+
+_G	MOAIBitmapFontReader	 {}
+MOAIBitmapFontReader	loadPage ( MOAIFont self, string filename, string charCodes, number points [, number dpi ] )
+
+_G	MOAIColor	 {}
+MOAIColor	moveColor ( MOAIColor self, number rDelta, number gDelta, number bDelta, number aDelta, number length [, number mode ] )
+MOAIColor	seekColor ( MOAIColor self, number rGoal, number gGoal, number bGoal, number aGoal, number length [, number mode ] )
+MOAIColor	setColor ( MOAIColor self, number r, number g, number b [, number a ] )
+MOAIColor	setParent ( MOAICameraAnchor2D self [, MOAITransformBase parent ] )
+
+_G	MOAISafariIOS	 {}
+MOAISafariIOS	openURL ( string url )
+MOAISafariIOS	openURLWithParams ( string url, table params )
+
+_G	MOAIXmlParser	 {}
+MOAIXmlParser	parseFile ( MOAIXmlParser self, string filename )
+MOAIXmlParser	parseString ( MOAIXmlParser self, string filename )
+
+_G	MOAIIndexBuffer	 {}
+MOAIIndexBuffer	release ( MOAIFmodExSound self )
+MOAIIndexBuffer	reserveLinks ( MOAIAnim self, number nLinks )
+MOAIIndexBuffer	setIndex ( MOAIBoundsDeck self, number idx, number boundsID )
+
+_G	MOAIDeckRemapper	 {}
+MOAIDeckRemapper	reserveLinks ( MOAIAnim self, number nLinks )
+MOAIDeckRemapper	setBase ( MOAIDeckRemapper self [, number base ] )
+MOAIDeckRemapper	setRemap ( MOAIDeckRemapper self, number index [, number remap ] )
+
+_G	MOAIGfxQuadDeck2D	 {}
+MOAIGfxQuadDeck2D	reserveLinks ( MOAIAnim self, number nLinks )
+MOAIGfxQuadDeck2D	setQuad ( MOAIGfxQuad2D self, number x0, number y0, number x1, number y1, number x2, number y2, number x3, number y3 )
+MOAIGfxQuadDeck2D	setRect ( MOAICameraAnchor2D self, number xMin, number yMin, number xMax, number yMax )
+MOAIGfxQuadDeck2D	setUVQuad ( MOAIGfxQuad2D self, number x0, number y0, number x1, number y1, number x2, number y2, number x3, number y3 )
+MOAIGfxQuadDeck2D	setUVRect ( MOAIGfxQuad2D self, number xMin, number yMin, number xMax, number yMax )
+MOAIGfxQuadDeck2D	setTexture ( MOAIDeck self, variant texture [, number transform ] )
+MOAIGfxQuadDeck2D	transformUV ( MOAIGfxQuad2D self, MOAITransform transform )
+
+_G	MOAIMultiTexture	 {}
+MOAIMultiTexture	reserveLinks ( MOAIAnim self, number nLinks )
+MOAIMultiTexture	setTexture ( MOAIDeck self, variant texture [, number transform ] )
+
+_G	MOAIScriptNode	 {}
+MOAIScriptNode	reserveAttrs ( MOAIScriptNode self, number nAttributes )
+MOAIScriptNode	setCallback ( MOAIButtonSensor self [, callback ] )
+
+_G	MOAIBoundsDeck	 {}
+MOAIBoundsDeck	reserveBounds ( MOAIBoundsDeck self, number nBounds )
+MOAIBoundsDeck	reserveIndices ( MOAIBoundsDeck self, number nIndices )
+MOAIBoundsDeck	setBounds ( MOAIBoundsDeck self, number idx, number xMin, number yMin, number zMin, number xMax, number yMax, number zMax )
+MOAIBoundsDeck	setIndex ( MOAIBoundsDeck self, number idx, number boundsID )
+
+_G	MOAIGridDeck2D	 {}
+MOAIGridDeck2D	reserveBrushes
+MOAIGridDeck2D	setBrush ( MOAIGridDeck2D self, number idx, number xTile, number yTile, number width, number height [, number xOff, number yOff ] )
+MOAIGridDeck2D	setDeck ( MOAIGridDeck2D self [, MOAIDeck deck ] )
+MOAIGridDeck2D	setGrid ( MOAIGridDeck2D self [, MOAIGrid grid ] )
+MOAIGridDeck2D	setRemapper ( MOAIGridDeck2D self [, MOAIDeckRemapper remapper ] )
+
+_G	MOAIStretchPatch2D	 {}
+MOAIStretchPatch2D	reserveColumns ( MOAIStretchPatch2D self, number nColumns )
+MOAIStretchPatch2D	reserveRows ( MOAIStretchPatch2D self, number nRows )
+MOAIStretchPatch2D	reserveUVRects ( MOAIStretchPatch2D self, number nUVRects )
+MOAIStretchPatch2D	setColumn ( MOAIStretchPatch2D self, number idx, number weight, boolean conStretch )
+MOAIStretchPatch2D	setRect ( MOAICameraAnchor2D self, number xMin, number yMin, number xMax, number yMax )
+MOAIStretchPatch2D	setRow ( MOAIGrid self, number row, ... )
+MOAIStretchPatch2D	setUVRect ( MOAIGfxQuad2D self, number xMin, number yMin, number xMax, number yMax )
+
+_G	MOAIEaseDriver	 {}
+MOAIEaseDriver	reserveLinks ( MOAIAnim self, number nLinks )
+MOAIEaseDriver	setLink ( MOAIAnim self, number linkID, MOAIAnimCurveBase curve, MOAINode target, number attrID [, boolean asDelta ] )
+
+_G	MOAIGfxQuadListDeck2D	 {}
+MOAIGfxQuadListDeck2D	reserveLists ( MOAIGfxQuadListDeck2D self, number nLists )
+MOAIGfxQuadListDeck2D	reservePairs ( MOAIGfxQuadListDeck2D self, number nPairs )
+MOAIGfxQuadListDeck2D	reserveQuads ( MOAIGfxQuadListDeck2D self, number nQuads )
+MOAIGfxQuadListDeck2D	reserveUVQuads ( MOAIGfxQuadListDeck2D self, number nUVQuads )
+MOAIGfxQuadListDeck2D	setList ( MOAIGfxQuadListDeck2D self, number idx, number basePairID, number totalPairs )
+MOAIGfxQuadListDeck2D	setPair ( MOAIGfxQuadListDeck2D self, number idx, number uvQuadID, number quadID )
+MOAIGfxQuadListDeck2D	setQuad ( MOAIGfxQuad2D self, number x0, number y0, number x1, number y1, number x2, number y2, number x3, number y3 )
+MOAIGfxQuadListDeck2D	setRect ( MOAICameraAnchor2D self, number xMin, number yMin, number xMax, number yMax )
+MOAIGfxQuadListDeck2D	setUVQuad ( MOAIGfxQuad2D self, number x0, number y0, number x1, number y1, number x2, number y2, number x3, number y3 )
+MOAIGfxQuadListDeck2D	setUVRect ( MOAIGfxQuad2D self, number xMin, number yMin, number xMax, number yMax )
+MOAIGfxQuadListDeck2D	setTexture ( MOAIDeck self, variant texture [, number transform ] )
+MOAIGfxQuadListDeck2D	transformUV ( MOAIGfxQuad2D self, MOAITransform transform )
+
+_G	MOAISurfaceDeck2D	 {}
+MOAISurfaceDeck2D	reserveSurfaceLists ( MOAISurfaceDeck2D self, number nLists )
+MOAISurfaceDeck2D	reserveSurfaces ( MOAISurfaceDeck2D self, number idx, number nSurfaces )
+MOAISurfaceDeck2D	setSurfaceVel ( MOAICpShape self, number x, number y )
+
+_G	MOAIParticleDistanceEmitter	 {}
+MOAIParticleDistanceEmitter	resetMassData ( MOAIBox2DBody self )
+MOAIParticleDistanceEmitter	setDistance ( MOAIParticleDistanceEmitter self, number min [, number max ] )
+
+_G	MOAIParticleEmitter	 {}
+MOAIParticleEmitter	setAngle ( MOAICpBody self, number angle )
+MOAIParticleEmitter	setEmission ( MOAIParticleEmitter self, number min [, number max ] )
+MOAIParticleEmitter	setMagnitude ( MOAIParticleEmitter self, number min [, number max ] )
+MOAIParticleEmitter	setRadius ( MOAIParticleEmitter self, number radius )
+MOAIParticleEmitter	setRect ( MOAICameraAnchor2D self, number xMin, number yMin, number xMax, number yMax )
+MOAIParticleEmitter	setSystem ( MOAIParticleEmitter self, MOAIParticleSystem system )
+MOAIParticleEmitter	surge ( MOAIParticleEmitter self [, number total ] )
+
+_G	MOAIDeck	 {}
+MOAIDeck	setBoundsDeck ( MOAIDeck self [, MOAIBoundsDeck boundsDeck ] )
+MOAIDeck	setShader ( MOAIDeck self, MOAIShader shader )
+MOAIDeck	setTexture ( MOAIDeck self, variant texture [, number transform ] )
+
+_G	MOAIGlyphCacheBase	 {}
+MOAIGlyphCacheBase	setColorFormat ( MOAIFont self, number colorFmt )
+
+_G	MOAIScriptDeck	 {}
+MOAIScriptDeck	setDrawCallback ( MOAIScriptDeck self, callback )
+MOAIScriptDeck	setRect ( MOAICameraAnchor2D self, number xMin, number yMin, number xMax, number yMax )
+MOAIScriptDeck	setRectCallback ( MOAIScriptDeck self, callback )
+MOAIScriptDeck	setTotalRectCallback ( MOAIScriptDeck self, callback )
+
+_G	MOAIParticleTimedEmitter	 {}
+MOAIParticleTimedEmitter	setFrequency ( MOAIBox2DDistanceJoint self [, number frequency ] )
+
+_G	MOAIGridPathGraph	 {}
+MOAIGridPathGraph	setGrid ( MOAIGridDeck2D self [, MOAIGrid grid ] )
+
+_G	MOAIMesh	 {}
+MOAIMesh	setIndexBuffer ( MOAIMesh self, MOAIIndexBuffer indexBuffer )
+MOAIMesh	setPenWidth ( number width )
+MOAIMesh	setPointSize ( number size )
+MOAIMesh	setPrimType ( MOAIMesh self, number primType )
+MOAIMesh	setVertexBuffer ( MOAIMesh self, MOAIVertexBuffer vertexBuffer )
+
+_G	MOAIInstanceEventSource	 {}
+MOAIInstanceEventSource	setListener ( MOAIInstanceEventSource self, number eventID [, callback ] )
+
+_G	MOAIGlobalEventSource	 {}
+MOAIGlobalEventSource	setListener ( MOAIInstanceEventSource self, number eventID [, callback ] )
+
+_G	MOAIViewport	 {}
+MOAIViewport	setOffset ( MOAIViewport self, number xOff, number yOff )
+MOAIViewport	setRotation ( MOAIViewport self, number rotation )
+MOAIViewport	setScale ( MOAITextStyle self [, number scale ] )
+MOAIViewport	setSize ( MOAIGridSpace self, number width, number height [, number cellWidth, number cellHeight, number xOff, number yOff, number tileWidth, number tileHeight ] )
+
+_G	MOAICameraAnchor2D	 {}
+MOAICameraAnchor2D	setParent ( MOAICameraAnchor2D self [, MOAITransformBase parent ] )
+MOAICameraAnchor2D	setRect ( MOAICameraAnchor2D self, number xMin, number yMin, number xMax, number yMax )
+
+_G	MOAITileDeck2D	 {}
+MOAITileDeck2D	setQuad ( MOAIGfxQuad2D self, number x0, number y0, number x1, number y1, number x2, number y2, number x3, number y3 )
+MOAITileDeck2D	setRect ( MOAICameraAnchor2D self, number xMin, number yMin, number xMax, number yMax )
+MOAITileDeck2D	setSize ( MOAIGridSpace self, number width, number height [, number cellWidth, number cellHeight, number xOff, number yOff, number tileWidth, number tileHeight ] )
+MOAITileDeck2D	setUVQuad ( MOAIGfxQuad2D self, number x0, number y0, number x1, number y1, number x2, number y2, number x3, number y3 )
+MOAITileDeck2D	setUVRect ( MOAIGfxQuad2D self, number xMin, number yMin, number xMax, number yMax )
+MOAITileDeck2D	setTexture ( MOAIDeck self, variant texture [, number transform ] )
+MOAITileDeck2D	transformUV ( MOAIGfxQuad2D self, MOAITransform transform )
+
+_G	MOAIGfxQuad2D	 {}
+MOAIGfxQuad2D	setQuad ( MOAIGfxQuad2D self, number x0, number y0, number x1, number y1, number x2, number y2, number x3, number y3 )
+MOAIGfxQuad2D	setRect ( MOAICameraAnchor2D self, number xMin, number yMin, number xMax, number yMax )
+MOAIGfxQuad2D	setUVQuad ( MOAIGfxQuad2D self, number x0, number y0, number x1, number y1, number x2, number y2, number x3, number y3 )
+MOAIGfxQuad2D	setUVRect ( MOAIGfxQuad2D self, number xMin, number yMin, number xMax, number yMax )
+MOAIGfxQuad2D	setTexture ( MOAIDeck self, variant texture [, number transform ] )
+MOAIGfxQuad2D	transformUV ( MOAIGfxQuad2D self, MOAITransform transform )
+
+_G	MOAIDebugLines	 {}
+MOAIDebugLines	setStyle ( number styleID [, number size, number r, number g, number b, number a ] )
+MOAIDebugLines	showStyle ( number styleID [, boolean show ] )
+
+_G	MOAIDialogIOS	 {}
+MOAIDialogIOS	showDialog ( string title, string message, string positive, string neutral, string negative, bool cancelable [, callback ] )
+
+_G	MOAIDialogAndroid	 {}
+MOAIDialogAndroid	showDialog ( string title, string message, string positive, string neutral, string negative, bool cancelable [, callback ] )
+
+_G	MOAIFooMgr	 {}
+MOAIFooMgr	_singletonHello ()
+

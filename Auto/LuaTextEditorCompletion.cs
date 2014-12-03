@@ -9,6 +9,7 @@ using MonoDevelop.Ide.Gui.Content;
 using MonoDevelop.Ide.CodeCompletion;
 
 using ICSharpCode.NRefactory.Completion;
+using System.Reflection;
 
 namespace LuaBinding
 {
@@ -53,32 +54,28 @@ namespace LuaBinding
 			string required = "";
 			var optional = new List<Tuple<int, List<string>>>();
 
-			int i = 0;
-			while( i < input.Length )
-			{
-				char x = input[ i ];
+			int i = 0; 
+			while (i < input.Length) {
+				char x = input[i];
 
-				if( x == '[' )
-				{
+				if (x == '[') {
 					int start = i;
 					depth = 1;
 					i++;
 
-					while( i < input.Length && depth > 0 )
-					{
-						if( input[ i ] == '[' )
+					while (i < input.Length && depth > 0) {
+						if (input[i] == '[')
 							depth++;
-						if( input[ i ] == ']' )
+						if (input[i] == ']')
 							depth--;
 						i++;
 					}
 					i--;
 
-					string child = input.Substring( start + 1, (i - (start + 1)) );
+					string child = input.Substring(start + 1, (i - (start + 1)));
 					int pos = required.Length;
-					optional.Add( new Tuple<int, List<string>>( pos, Unpack(child) ) );
-				}
-				else
+					optional.Add(new Tuple<int, List<string>>(pos, Unpack(child)));
+				} else
 					required += x;
 
 				i++;
@@ -86,66 +83,59 @@ namespace LuaBinding
 
 			var ret = new List<string>();
 
-			if( optional.Count == 0 )
-			{
-				ret.Add( required );
+			if (optional.Count == 0) {
+				ret.Add(required);
 				return ret;
 			}
 
 			var argument = new int[optional.Count];
 			var argument_max = new int[optional.Count];
 
-			for( i = 0; i < argument.Length; i++ ) // Reset this one
-				argument[ i ] = 0;
+			for (i = 0; i < argument.Length; i++) // Reset this one
+				argument[i] = 0;
 
-			for( i = 0; i < argument_max.Length; i++ )
-				argument_max[ i ] = optional[i].Item2.Count;
+			for (i = 0; i < argument_max.Length; i++)
+				argument_max[i] = optional[i].Item2.Count;
 
 			bool done = false;
-			while( !done )
-			{
+			while (!done) {
 				string itt = required;
 				// Add an itteration
-				for( i = argument.Length; i-- > 0; ) // work backwards so the pointers are still fine
-					if( argument[ i ] != 0 )
-					{
-						int     pos = optional[ i ].Item1;
-						string  str = optional[ i ].Item2[ argument[ i ] - 1 ];
-						itt = itt.Insert( pos, str );
+				for (i = argument.Length; i-- > 0;) // work backwards so the pointers are still fine
+					if (argument[i] != 0) {
+						int pos = optional[i].Item1;
+						string str = optional[i].Item2[argument[i] - 1];
+						itt = itt.Insert(pos, str);
 					}
 
 				// The generated sequence is in itt now, but we need to clean it up a bit...
-				itt = itt.Trim( " \t,".ToCharArray() );
-				var split = new List<string>( itt.Split( ",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries ) );
+				itt = itt.Trim(" \t,".ToCharArray());
+				var split = new List<string>(itt.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
 
-				for( i = split.Count; i-- > 0; )
-					if( string.IsNullOrWhiteSpace( split[ i ] ) )
-						split.RemoveAt( i );
+				for (i = split.Count; i-- > 0;)
+					if (string.IsNullOrWhiteSpace(split[i]))
+						split.RemoveAt(i);
 
 				string comma = "";
 				itt = "";
-				foreach( string str in split )
-				{
+				foreach (string str in split) {
 					itt += comma + str.Trim();
 					comma = ", ";
 				}
 
-				ret.Add( itt );
+				ret.Add(itt);
 
 				// Okay, now increase our base-mixed-numbery thing by one
-				argument[ 0 ]++;
+				argument[0]++;
 
-				for( i = 0; i < argument.Length; i++ )
-				{
-					if( argument[ i ] > argument_max[ i ] ) // carry
-					{
-						if( i + 1 >= argument.Length ) // no other place to carry
-						{
+				for (i = 0; i < argument.Length; i++) {
+					if (argument[i] > argument_max[i]) { // carry
+						if (i + 1 >= argument.Length) { // no other place to carry
 							done = true;
 							break;
 						}
-						argument[ i ] = 0;
-						argument[ i + 1 ]++;
+						argument[i] = 0;
+						argument[i + 1]++;
 					}
 				}
 			}
@@ -155,16 +145,17 @@ namespace LuaBinding
 			return ret;
 		}
 
-		public override int Count
-		{
+		public override int Count {
 			get { return Overloads.Count; }
 		}
 
 		readonly List<string> Overloads = null;
 		readonly string FuncName, FuncArgs;
-		public LuaParameterDataProvider(string funcname, string args) : base(1)
+
+		public LuaParameterDataProvider(string funcname, string args)
+			: base(1)
 		{
-			Overloads = Unpack( args );
+			Overloads = Unpack(args);
 			FuncName = funcname;
 			FuncArgs = args;
 		}
@@ -174,22 +165,22 @@ namespace LuaBinding
 			return overload < Count;
 		}
 
-		public override int GetParameterCount( int overload )
+		public override int GetParameterCount(int overload)
 		{
-			return Overloads[ overload ].Split( ",".ToCharArray() ).Length;
+			return Overloads[overload].Split(",".ToCharArray()).Length;
 		}
 
-		public override string GetParameterName( int overload, int paramIndex )
+		public override string GetParameterName(int overload, int paramIndex)
 		{
-			return Overloads[ overload ].Split( ",".ToCharArray() )[ paramIndex ].Trim();
+			return Overloads[overload].Split(",".ToCharArray())[paramIndex].Trim();
 		}
 
-		static string GetHeading( int overload, string[] parameterDescription, int currentParameter )
+		static string GetHeading(int overload, string[] parameterDescription, int currentParameter)
 		{
 			return "HEADING";
 		}
 
-		static string GetDescription( int overload, int currentParameter )
+		static string GetDescription(int overload, int currentParameter)
 		{
 			return "DESCRIPT";
 		}
@@ -198,12 +189,11 @@ namespace LuaBinding
 		{
 			var info = new TooltipInformation();
 
-			string[] args = Overloads[ overload ].Split( ",".ToCharArray() );
+			string[] args = Overloads[overload].Split(",".ToCharArray());
 			string markup = "";
 			string comma = "";
 			int current = 1;
-			foreach( string arg in args )
-			{
+			foreach (string arg in args) {
 				markup += current == currentParameter ? string.Format("{0}<b><i>{1}</i></b>", comma, arg) : string.Format("{0}{1}", comma, arg);
 
 				comma = ", ";
@@ -211,7 +201,7 @@ namespace LuaBinding
 			}
 
 			info.SignatureMarkup = FuncName + "(" + FuncArgs + ")";
-			info.AddCategory( "Parameters", string.Format("{0}( {1} )", FuncName, markup) );
+			info.AddCategory("Parameters", string.Format("{0}( {1} )", FuncName, markup));
 
 			return info;
 			//return base.CreateTooltipInformation(overload, currentParameter, smartWrap);
@@ -222,7 +212,7 @@ namespace LuaBinding
 	{
 		static bool ValidVarnameChar(char x)
 		{
-			return char.IsLetterOrDigit( x ) || x == '_';
+			return char.IsLetterOrDigit(x) || x == '_';
 		}
 
 		string[] Globals = { // TODO: Fill this in
@@ -390,56 +380,110 @@ namespace LuaBinding
 		};
 
 		string[] ProjectGlobals = new string[0];
+		string[] EngineGlobals = new string[0];
 		DateTime? LastModified;
+		DateTime? LastModifiedEngineGlobals;
 
-		void UpdateProjectGlobals()
+		void UpdateEngineGlobals()
 		{
-			if( !document.HasProject )
+			if (!document.HasProject)
 				return;
 
 			var proj = document.Project;
-			string path = proj.GetAbsoluteChildPath( ".project_globals" );
+			var conf = (LuaConfiguration)proj.DefaultConfiguration;
 
-			if( !File.Exists( path ) )
+			if (conf.LangVersion != LangVersion.GarrysMod ||
+			    conf.LangVersion != LangVersion.Moai ||
+			    conf.LangVersion != LangVersion.Love)
+				return;
+
+			string path = "";
+			switch (conf.LangVersion) {
+				case LangVersion.GarrysMod:
+					path = proj.GetAbsoluteChildPath("garrysmod_definitions.txt");
+					break;
+				case LangVersion.Moai:
+					path = proj.GetAbsoluteChildPath("Moai_definitions.txt");
+					break;
+				case LangVersion.Love:
+					path = proj.GetAbsoluteChildPath("Love_definitions.txt");
+					break;
+			}
+
+			if (!File.Exists(path)) {
+				if (conf.LangVersion == LangVersion.GarrysMod || conf.LangVersion == LangVersion.Moai) {
+					var assembly = Assembly.GetExecutingAssembly();
+					var resourceName = "";
+
+					if (conf.LangVersion == LangVersion.GarrysMod) {
+						resourceName = "LuaBinding.garrysmod_definitions.txt";
+					}
+					if (conf.LangVersion == LangVersion.Moai) {
+						resourceName = "LuaBinding.Moai_definitions.txt";
+					}
+						
+					//Copy!
+					using (Stream instream = assembly.GetManifestResourceStream(resourceName))
+					using (var outstream = File.Create(path)) {
+						instream.CopyTo(outstream);
+					}
+				}
+			}
+
+			if (LastModifiedEngineGlobals == null || File.GetLastWriteTimeUtc(path) > LastModifiedEngineGlobals) {
+				LastModifiedEngineGlobals = File.GetLastWriteTimeUtc(path);
+				EngineGlobals = File.ReadAllLines(path);
+			}
+		}
+
+		void UpdateProjectGlobals()
+		{
+			if (!document.HasProject)
+				return;
+
+			var proj = document.Project;
+			string path = proj.GetAbsoluteChildPath(".project_globals");
+
+			if (!File.Exists(path))
 				return;
 
 
 
-			if( LastModified == null || File.GetLastWriteTimeUtc( path ) > LastModified )
-			{
-				LastModified = File.GetLastWriteTimeUtc( path );
-				ProjectGlobals = File.ReadAllLines( path );
+			if (LastModified == null || File.GetLastWriteTimeUtc(path) > LastModified) {
+				LastModified = File.GetLastWriteTimeUtc(path);
+				ProjectGlobals = File.ReadAllLines(path);
 			}
 		}
 
-		readonly Regex rx_is_local     = new Regex( @"^\s*(local|for)\s+((([A-z_][A-z0-9_]*))(\s*,\s*([A-z_][A-z0-9_]*))*)?\s*$", RegexOptions.Compiled );
-		readonly Regex rx_is_function  = new Regex( @"^.*(local\s+)?function(\s+([A-z0-9_\.]*))?\s*(\([A-z0-9_, ]*)?$", RegexOptions.Compiled );
-		readonly Regex rx_is_comment   = new Regex( @"^.*--.*$", RegexOptions.Compiled );
-		readonly Regex rx_in_string    = new Regex( @"(?<!\\)""", RegexOptions.Compiled );
-		readonly Regex rx_is_number    = new Regex( @"(?<![A-z_][0-9\.]*)[0-9\.]+$", RegexOptions.Compiled );
+		readonly Regex rx_is_local = new Regex(@"^\s*(local|for)\s+((([A-z_][A-z0-9_]*))(\s*,\s*([A-z_][A-z0-9_]*))*)?\s*$", RegexOptions.Compiled);
+		readonly Regex rx_is_function = new Regex(@"^.*(local\s+)?function(\s+([A-z0-9_\.]*))?\s*(\([A-z0-9_, ]*)?$", RegexOptions.Compiled);
+		readonly Regex rx_is_comment = new Regex(@"^.*--.*$", RegexOptions.Compiled);
+		readonly Regex rx_in_string = new Regex(@"(?<!\\)""", RegexOptions.Compiled);
+		readonly Regex rx_is_number = new Regex(@"(?<![A-z_][0-9\.]*)[0-9\.]+$", RegexOptions.Compiled);
+
 		public override bool CanRunCompletionCommand()
 		{
-			string line = Editor.GetLineText( Editor.Caret.Line );
-			string to_left = line.Substring( 0, Math.Min( Editor.Caret.Column - 1, line.Length ) );
+			string line = Editor.GetLineText(Editor.Caret.Line);
+			string to_left = line.Substring(0, Math.Min(Editor.Caret.Column - 1, line.Length));
 
 			{ // Are we in a definition?
-				if( rx_is_local.IsMatch( to_left ) || rx_is_function.IsMatch( to_left ) )
+				if (rx_is_local.IsMatch(to_left) || rx_is_function.IsMatch(to_left))
 					return false; // nope, we're defining a local variable
 			}
 
 			{ // Are we in a comment?
-				if( rx_is_comment.IsMatch( to_left ) )
+				if (rx_is_comment.IsMatch(to_left))
 					return false;
 			}
 
 			{ // TODO: Are we in a string?
-				MatchCollection col = rx_in_string.Matches( to_left );
-				if( col.Count % 2 == 1 ) // inside string
+				MatchCollection col = rx_in_string.Matches(to_left);
+				if (col.Count % 2 == 1) // inside string
 					return false;
 			}
 
 			{ // Are we writing a number?
-				if( rx_is_number.IsMatch( to_left ) )
+				if (rx_is_number.IsMatch(to_left))
 					return false;
 			}
 
@@ -466,19 +510,17 @@ namespace LuaBinding
 
 		public override ICompletionDataList HandleCodeCompletion(CodeCompletionContext completionContext, char completionChar, ref int triggerWordLength)
 		{
-			if( !CanRunCompletionCommand() )
+			if (!CanRunCompletionCommand())
 				return null;
 
-			if( completionChar == '(' || completionChar == ')' ||
-				completionChar == '[' || completionChar == ']' ||
-				completionChar == '{' || completionChar == '}' ||
-				completionChar == '"' || completionChar == '\''||
-				completionChar == ';' || completionChar == '=' ||
-				completionChar == ' ' || completionChar == '\t'||
-				completionChar == ',' )
-			{
-				if( completionChar == '(' )
-				{
+			if (completionChar == '(' || completionChar == ')' ||
+			    completionChar == '[' || completionChar == ']' ||
+			    completionChar == '{' || completionChar == '}' ||
+			    completionChar == '"' || completionChar == '\'' ||
+			    completionChar == ';' || completionChar == '=' ||
+			    completionChar == ' ' || completionChar == '\t' ||
+			    completionChar == ',') {
+				if (completionChar == '(') {
 					// TODO: Add function args
 				}
 				return null; // don't show it yet
@@ -488,19 +530,16 @@ namespace LuaBinding
 			string fullcontext = "";
 			bool has_namespace = false;
 
-			if (completionContext.TriggerOffset > 1)
-			{
+			if (completionContext.TriggerOffset > 1) {
 				completionContext.TriggerOffset = document.Editor.Caret.Offset;
 				int pos = completionContext.TriggerOffset - 1;
 				
-				while( pos > 1 )
-				{
-					char letter = document.Editor.GetCharAt( pos );
+				while (pos > 1) {
+					char letter = document.Editor.GetCharAt(pos);
 
 					pos--;
-					if( letter == '.' || letter == ':' || letter == ',' || 
-						!ValidVarnameChar(letter) )
-					{
+					if (letter == '.' || letter == ':' || letter == ',' ||
+					    !ValidVarnameChar(letter)) {
 						has_namespace |= letter == '.' || letter == ':';
 						break;
 
@@ -514,63 +553,51 @@ namespace LuaBinding
 				bool did_space = false;
 				bool did_namespace = false;
 
-				while( pos > 1 && has_namespace )
-				{
-					char letter = document.Editor.GetCharAt( pos );
+				while (pos > 1 && has_namespace) {
+					char letter = document.Editor.GetCharAt(pos);
 					
-					if( char.IsWhiteSpace( letter ) )
+					if (char.IsWhiteSpace(letter))
 						did_space = true;
-					else
-					if( did_space && !did_namespace && (letter != '.' && letter != ':') )
-					{
+					else if (did_space && !did_namespace && (letter != '.' && letter != ':')) {
 						break;
-					}
-					else
-					if( letter == '.' || letter == ':' )
-					{
+					} else if (letter == '.' || letter == ':') {
 						did_namespace = true;
 						fullcontext = letter + fullcontext;
-					}
-					else if( ValidVarnameChar(letter) )
-					{
+					} else if (ValidVarnameChar(letter)) {
 						did_namespace = false;
 						did_space = false;
 						fullcontext = letter + fullcontext;
-					}
-					else
+					} else
 						break;
 					pos--;
 				}
 			}
 
-			if( completionChar == '.' && string.IsNullOrWhiteSpace( fullcontext.Trim( ".".ToCharArray() ) ) )
+			if (completionChar == '.' && string.IsNullOrWhiteSpace(fullcontext.Trim(".".ToCharArray())))
 				return null;
 
-			if( fullcontext.Trim() == "" )
+			if (fullcontext.Trim() == "")
 				fullcontext = "_G";
-			else
-			{
-				fullcontext = fullcontext.TrimEnd( ".".ToCharArray() );
+			else {
+				fullcontext = fullcontext.TrimEnd(".".ToCharArray());
 				if (fullcontext.StartsWith("_G.", StringComparison.Ordinal))
 					fullcontext = fullcontext.Substring("_G.".Length);
 			}
 
 			CompletionCategory cat = null;
-			Action<string> handle_line = delegate(string line)
-			{
+			Action<string> handle_line = delegate(string line) {
 				if (line.Trim().StartsWith("#", StringComparison.Ordinal))
 					return;
-				if(string.IsNullOrWhiteSpace(line))
+				if (string.IsNullOrWhiteSpace(line))
 					return;
 
-				string[] split = line.Split( "\t".ToCharArray() );
+				string[] split = line.Split("\t".ToCharArray());
 
-				string arg0 = split.Length >= 1 ? split[ 0 ] : ""; // namespace
-				string arg1 = split.Length >= 2 ? split[ 1 ] : ""; // name
-				string arg2 = split.Length >= 3 ? split[ 2 ] : ""; // arguments
+				string arg0 = split.Length >= 1 ? split[0] : ""; // namespace
+				string arg1 = split.Length >= 2 ? split[1] : ""; // name
+				string arg2 = split.Length >= 3 ? split[2] : ""; // arguments
 
-				if( arg0 == fullcontext )
-				{
+				if (arg0 == fullcontext) {
 					string icon = MonoDevelop.Ide.Gui.Stock.Method;
 					string arg = arg2;
 
@@ -589,25 +616,27 @@ namespace LuaBinding
 							break;
 					}
 
-					var elm = ret.Add( arg1 + arg, icon, "", arg1 );
+					var elm = ret.Add(arg1 + arg, icon, "", arg1);
 					elm.CompletionCategory = cat;
 				}
 			};
 
 			UpdateProjectGlobals();
-
+			//UpdateEngineGlobals();
 			cat = new GlobalCompletionCategory();
 
-			foreach( string glob in Globals )
-				handle_line( glob );
-			foreach( string glob in ProjectGlobals )
-				handle_line( glob );
+			foreach (string glob in Globals)
+				handle_line(glob);
+			foreach (string glob in ProjectGlobals)
+				handle_line(glob);
+			foreach (string glob in EngineGlobals)
+				handle_line(glob);
 
 			cat = new LocalCompletionCategory();
 			cat.DisplayText = "Locals";
 
-			foreach(string glob in GetDocumentLocals())
-				handle_line( glob );
+			foreach (string glob in GetDocumentLocals())
+				handle_line(glob);
 
 			return ret;
 			//return base.HandleCodeCompletion(completionContext, completionChar, ref triggerWordLength);
@@ -615,6 +644,7 @@ namespace LuaBinding
 
 
 		bool wasnil = true;
+
 		public override void RunCompletionCommand()
 		{
 			wasnil = false; // allow ctrl+space to open the completion menu thingy
@@ -624,10 +654,10 @@ namespace LuaBinding
 		public override ParameterDataProvider HandleParameterCompletion(CodeCompletionContext completionContext, char completionChar)
 		{
 			// they're just moving their cursor around the document
-			if( wasnil && completionChar == '\0' )
+			if (wasnil && completionChar == '\0')
 				return null;
 
-			var ret = _HandleParameterCompletion( completionContext, completionChar );
+			var ret = _HandleParameterCompletion(completionContext, completionChar);
 			wasnil = ret == null;
 			return ret;
 		}
@@ -638,100 +668,95 @@ namespace LuaBinding
 			// attempt to get the function
 			int row = completionContext.TriggerLine;
 			int col = completionContext.TriggerLineOffset;
-			string line = Document.Editor.GetLineText( row );
+			string line = Document.Editor.GetLineText(row);
 			line = line.Substring(0, Math.Min(col, line.Length));
 
 			// Keep reading backwards until the last unclosed function
 			int pos = line.Length - 1;
 			int depth = 0;
 			bool _break_loop = false;
-			while( pos > 0 )
-			{
-				char x = line[ pos ];
+			while (pos > 0) {
+				char x = line[pos];
 
-				switch( x )
-				{
-				case ')':
-					depth++;
-					break;
-				case '(':
-					depth--;
-					_break_loop = depth < 0;
-					break;
+				switch (x) {
+					case ')':
+						depth++;
+						break;
+					case '(':
+						depth--;
+						_break_loop = depth < 0;
+						break;
 				}
 
-				if( _break_loop )
+				if (_break_loop)
 					break;
 
 				pos--;
 			}
 
-			if( pos <= 0 ) // negative, captin, not in a function
+			if (pos <= 0) // negative, captin, not in a function
 				return null;
-			line = line.Substring( 0, pos );
+			line = line.Substring(0, pos);
 
 			//Console.WriteLine( "HandleParameterCompletion :{0}:{1}", completionContext.TriggerLine, line );
 
 
 			bool in_name = true;
 			string name = "", context = "";
-			for( int i = line.Length; i-- > 0; )
-			{
-				char x = line[ i ];
+			for (int i = line.Length; i-- > 0;) {
+				char x = line[i];
 
-				if( in_name )
-				{
-					if( x == '.' || x == ':' )
+				if (in_name) {
+					if (x == '.' || x == ':')
 						in_name = false;
-					else
-					if( !ValidVarnameChar( x ) )
+					else if (!ValidVarnameChar(x))
 						break;
 					else
 						name = x + name;
-				}
-				else
-				{
-					if( x == '.' || x == ':' || ValidVarnameChar( x ) )
+				} else {
+					if (x == '.' || x == ':' || ValidVarnameChar(x))
 						context = x + context;
 					else
 						break;
 				}
 			}
 
-			if( context == "" )
+			if (context == "")
 				context = "_G";
 			string args = "";
 
-			Action<string> handle_line = delegate(string line2)
-			{
+			Action<string> handle_line = delegate(string line2) {
 				if (line2.Trim().StartsWith("#", StringComparison.Ordinal))
 					return;
-				if(string.IsNullOrWhiteSpace(line2))
+				if (string.IsNullOrWhiteSpace(line2))
 					return;
 
-				string[] split = line2.Split( "\t".ToCharArray() );
+				string[] split = line2.Split("\t".ToCharArray());
 
-				string arg0 = split.Length >= 1 ? split[ 0 ] : ""; // namespace
-				string arg1 = split.Length >= 2 ? split[ 1 ] : ""; // name
-				string arg2 = split.Length >= 3 ? split[ 2 ] : ""; // arguments
+				string arg0 = split.Length >= 1 ? split[0] : ""; // namespace
+				string arg1 = split.Length >= 2 ? split[1] : ""; // name
+				string arg2 = split.Length >= 3 ? split[2] : ""; // arguments
 
-				if( arg0 == context && arg1 == name )
+				if (arg0 == context && arg1 == name)
 					args = arg2;
 			};
 
+			//UpdateEngineGlobals();
 			UpdateProjectGlobals();
-			foreach( string glob in Globals )
+			foreach (string glob in Globals)
 				handle_line(glob);
-			foreach( string glob in ProjectGlobals )
+			foreach (string glob in ProjectGlobals)
 				handle_line(glob);
-			foreach( string glob in GetDocumentLocals() )
+			foreach (string glob in EngineGlobals)
+				handle_line(glob);
+			foreach (string glob in GetDocumentLocals())
 				handle_line(glob);
 
-			if(args == "")
+			if (args == "")
 				return null;
-			args = args.Trim( "()".ToCharArray() );
+			args = args.Trim("()".ToCharArray());
 
-			return new LuaParameterDataProvider( name, args );
+			return new LuaParameterDataProvider(name, args);
 			//return base.HandleParameterCompletion(completionContext, completionChar);
 		}
 
@@ -744,11 +769,11 @@ namespace LuaBinding
 		}
 
 		//readonly Regex rx_global_funcs = new Regex(@"\s+\d+\s+\[\d+\]\s+SETTABUP\s+[-\d]+\s+[-\d]+\s+[-\d]+\s+;\s+_ENV\s+""(?<name>.+)""", RegexOptions.Compiled);
-		readonly Regex rx_locals         = new Regex( @"(?<tabs>[ \t]*)local\s+(function\s+(?<func_name>[A-z_][A-z0-9_]*)\s*\((?<func_args>.*)\)|(?<vars>([A-z_][A-z0-9_]*))(\s*,\s*([A-z_][A-z0-9_]*))*)", RegexOptions.Compiled );
-		readonly Regex rx_args_and_for   = new Regex( @"(?<tabs>[ \t]*)((local\s+)?function\s+([A-z][A-z0-9]+)?\((?<vars>.+)\)|for\s+(?<vars>.+)\s+(in\s+|=))", RegexOptions.Compiled);
+		readonly Regex rx_locals = new Regex(@"(?<tabs>[ \t]*)local\s+(function\s+(?<func_name>[A-z_][A-z0-9_]*)\s*\((?<func_args>.*)\)|(?<vars>([A-z_][A-z0-9_]*))(\s*,\s*([A-z_][A-z0-9_]*))*)", RegexOptions.Compiled);
+		readonly Regex rx_args_and_for = new Regex(@"(?<tabs>[ \t]*)((local\s+)?function\s+([A-z][A-z0-9]+)?\((?<vars>.+)\)|for\s+(?<vars>.+)\s+(in\s+|=))", RegexOptions.Compiled);
 		// file, tuple; tuple is start_line, end_line, functiontype
 		//Dictionary<string, List<Tuple<int, int, string>>> Cached; // this is so that syntax error we can still get the last successfull
-		                                                          // cached result
+		// cached result
 		List<string> GetDocumentLocals()
 		{
 			var ret = new List<string>();
@@ -758,83 +783,74 @@ namespace LuaBinding
 
 			// Then get the locals from our char pos, along with the indentation (use tabs, please :C)
 			// This is a hacky method that gets the indentation depth 
-			string text = Editor.GetTextBetween( 0, Editor.Caret.Offset );
+			string text = Editor.GetTextBetween(0, Editor.Caret.Offset);
 
 			// Get locals
 			{
-				MatchCollection collection = rx_locals.Matches( text );
+				MatchCollection collection = rx_locals.Matches(text);
 
 				var col = new Match[collection.Count];
 				int i = 1;
-				foreach( Match match in collection )
-				{
-					col[ col.Length - i ] = match;
+				foreach (Match match in collection) {
+					col[col.Length - i] = match;
 					i++;
 				}
 
 				int depth = -1;
-				foreach( Match match in col )
-				{
+				foreach (Match match in col) {
 					// replace tab with 4 spaces, as this is *usually* right (few people use 2, 6 or 8 size tabs)
 					// TODO: Make this get the size from MonoDevelop
-					int tabs = match.Groups[ "tabs" ].Value.Replace( "\t", "    " ).Length;
+					int tabs = match.Groups["tabs"].Value.Replace("\t", "    ").Length;
 
 					// This bit of code just makes it so that "sub locals" arn't shown (it's hacky, i know)
 					// TODO: Update the locals to something more, conrete
-					if( depth == -1 || tabs < depth )
+					if (depth == -1 || tabs < depth)
 						depth = tabs;
-					else
-					if( tabs > depth ) // nope.avi, we dropped lower than this before, try again
+					else if (tabs > depth) // nope.avi, we dropped lower than this before, try again
 					continue;
 
-					if( match.Groups[ "vars" ].Success )
-					{
-						string vars = match.Groups[ "vars" ].Value;
-						foreach( string name in vars.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries) )
-							ret.Add( string.Format( "_G\t{0}\t#", name.Trim() ) );
-					}
-					else
-					{
-						string func_name = match.Groups[ "func_name" ].Value;
-						string func_args = match.Groups[ "func_args" ].Value;
+					if (match.Groups["vars"].Success) {
+						string vars = match.Groups["vars"].Value;
+						foreach (string name in vars.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries))
+							ret.Add(string.Format("_G\t{0}\t#", name.Trim()));
+					} else {
+						string func_name = match.Groups["func_name"].Value;
+						string func_args = match.Groups["func_args"].Value;
 
-						if( !string.IsNullOrWhiteSpace( func_name ) )
-							ret.Add( string.Format( "_G\t{0}\t({1})", func_name.Trim(), func_args.Trim() ) );
+						if (!string.IsNullOrWhiteSpace(func_name))
+							ret.Add(string.Format("_G\t{0}\t({1})", func_name.Trim(), func_args.Trim()));
 					}
 				}
 			}
 
 			// Get arguments
 			{
-				MatchCollection collection = rx_args_and_for.Matches( text );
+				MatchCollection collection = rx_args_and_for.Matches(text);
 
 				var col = new Match[collection.Count];
 				int i = 1;
-				foreach( Match match in collection )
-				{
-					col[ col.Length - i ] = match;
+				foreach (Match match in collection) {
+					col[col.Length - i] = match;
 					i++;
 				}
 
 				int depth = -1;
-				foreach( Match match in col )
-				{
+				foreach (Match match in col) {
 					// replace tab with 4 spaces, as this is *usually* right (few people use 2, 6 or 8 size tabs)
 					// TODO: Make this get the size from MonoDevelop
-					int tabs = match.Groups[ "tabs" ].Value.Replace( "\t", "    " ).Length + 4;
+					int tabs = match.Groups["tabs"].Value.Replace("\t", "    ").Length + 4;
 
 					// This bit of code just makes it so that "sub locals" arn't shown (it's hacky, i know)
 					// TODO: Update the locals to something more, conrete
-					if( depth == -1 || tabs < depth )
+					if (depth == -1 || tabs < depth)
 						depth = tabs;
-					else
-					if( tabs > depth ) // nope.avi, we dropped lower than this before, try again
+					else if (tabs > depth) // nope.avi, we dropped lower than this before, try again
 						continue;
 
-					string[] args = match.Groups[ "vars" ].Value.Split( ",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries );
+					string[] args = match.Groups["vars"].Value.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
-					if(args.Length > 0)
-						foreach(string arg in args)
+					if (args.Length > 0)
+						foreach (string arg in args)
 							ret.Add(string.Format("_G\t{0}\t#", arg.Trim()));
 				}
 			}
@@ -848,23 +864,23 @@ namespace LuaBinding
 		}
 
 		Regex rx_is_keyword = new Regex(@"(and|break|do|else|elseif|end|for|function|if|local|nil|not|or|repeat|return|then|until|while)$", RegexOptions.Compiled);
+
 		public override bool KeyPress(Gdk.Key key, char keyChar, Gdk.ModifierType modifier)
 		{
 			// If we are a keyword
-			if( keyChar == ' ' && modifier == Gdk.ModifierType.None && CompletionWidget != null )
-			{
-				CompletionWindowManager.PreProcessKeyEvent( Gdk.Key.Tab, '\t', Gdk.ModifierType.None );
-				CompletionWindowManager.PostProcessKeyEvent( Gdk.Key.Tab, '\t', Gdk.ModifierType.None );
+			if (keyChar == ' ' && modifier == Gdk.ModifierType.None && CompletionWidget != null) {
+				CompletionWindowManager.PreProcessKeyEvent(Gdk.Key.Tab, '\t', Gdk.ModifierType.None);
+				CompletionWindowManager.PostProcessKeyEvent(Gdk.Key.Tab, '\t', Gdk.ModifierType.None);
 				CompletionWidget.CurrentCodeCompletionContext.TriggerWordLength = 0;
 			}
 
 			bool ret = base.KeyPress(key, keyChar, modifier);
 
 			{ // did we type a keyword?
-				string line = Editor.GetLineText( Editor.Caret.Line );
-				string to_left = line.Substring( 0, Math.Min(line.Length, Editor.Caret.Column) );
+				string line = Editor.GetLineText(Editor.Caret.Line);
+				string to_left = line.Substring(0, Math.Min(line.Length, Editor.Caret.Column));
 
-				if( rx_is_keyword.IsMatch( to_left ) )
+				if (rx_is_keyword.IsMatch(to_left))
 					CompletionWindowManager.HideWindow();
 			}
 
@@ -877,24 +893,22 @@ namespace LuaBinding
 			int commas = 1;
 			int depth = 0;
 
-			while( pos > 1 )
-			{
-				char x = document.Editor.GetCharAt( pos );
+			while (pos > 1) {
+				char x = document.Editor.GetCharAt(pos);
 
-				switch( x )
-				{
-				case ')':
-					depth++;
-					break;
-				case '(':
-					depth--;
-					if( depth < 0 )
-						return commas + 1;
-					break;
-				case ',':
-					if(depth == 0)
-						commas++;
-					break;
+				switch (x) {
+					case ')':
+						depth++;
+						break;
+					case '(':
+						depth--;
+						if (depth < 0)
+							return commas + 1;
+						break;
+					case ',':
+						if (depth == 0)
+							commas++;
+						break;
 				}
 
 				pos--;
